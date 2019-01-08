@@ -2,14 +2,16 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Category = db.define('category', {
-  title: Sequelize.STRING,
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   imageURL: {
     type: Sequelize.STRING,
-    defaultValue:
-      'https://upload.wikimedia.org/wikipedia/commons/c/cd/Toyogeki-Movie_Toyooka002.jpg',
-    validate: {
-      isUrl: true
-    }
+    defaultValue: '/default_movie_image.jpg'
   }
 })
 
