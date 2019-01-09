@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const { User, Category } = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -13,7 +13,22 @@ async function seed() {
   ])
 
   console.log(`seeded ${users.length} users`)
+
+  const categories = await Promise.all([
+    Category.create({title: "Back to the Future", imageURL: '/img/back-to-the-future.png'}),
+    Category.create({title: "Batman", imageURL: '/img/batman.png'}),
+    Category.create({title: "Harry Potter", imageURL: '/img/harry-potter.png'}),
+    Category.create({title: "Star Wars", imageURL: '/img/star-wars.png'}),
+    Category.create({title: "Superman", imageURL: '/img/superman.jpg'}),
+    Category.create({title: "The Lord of the Rings", imageURL: '/img/the-lord-of-the-rings.png'}),
+    Category.create({title: "Transformers", imageURL: '/img/transformers.png'}),
+    Category.create({title: "Tron: Legacy", imageURL: '/img/tron.jpeg'}),
+    Category.create({title: "X-MEN", imageURL: '/img/x-men.png'})
+  ])
+
+  console.log(`seeded ${categories.length} categories`)
   console.log(`seeded successfully`)
+
 }
 
 // We've separated the `seed` function from the `runSeed` function.
