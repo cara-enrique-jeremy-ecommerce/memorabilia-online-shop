@@ -4,14 +4,14 @@ const db = require('../server/db')
 const {User, Category, Product} = require('../server/db/models')
 
 // ADDED A SMALL PRODUCT SEED TO TEST ROUTES AND MODEL
-const products = [
-  {
-    name: 'Elder wand',
-    price: 12.5,
-    description:
-      'This is a super special wand that can defeat he-who-must-not-be-named.'
-  }
-]
+// const products = [
+//   {
+//     name: 'Elder wand',
+//     price: 12.5,
+//     description:
+//       'This is a super special wand that can defeat he-who-must-not-be-named.'
+//   }
+// ]
 
 async function seed() {
   await db.sync({force: true})
@@ -43,6 +43,98 @@ async function seed() {
   ])
 
   console.log(`seeded ${categories.length} categories`)
+
+  const products = [
+    {
+      name: 'Kryptonite',
+      price: 99.99,
+      description:
+        'An alien mineral that has the property of depriving Superman of his powers.',
+      image: '/img/kryptonite.jpg',
+      quantity: 5,
+      categoryId: 4
+    }, {
+      name: 'Superman Cape',
+      price: 19.99,
+      description:
+        'Save the day with this red cape. A must have attire for any superhero ensemble',
+      image: '/img/supermancape.jpg',
+      quantity: 50,
+      categoryId: 4
+    }, {
+      name: 'Superman Underwear',
+      price: 5.99,
+      description:
+        'No Superman costume is complete without the underwear...',
+      image: '/img/supermanunderwear.jpg',
+      quantity: 25,
+      categoryId: 4
+    }, {
+      name: 'Clark Kent glasses',
+      price: 4.99,
+      description:
+        'Put on these glasses and you will be magically disguised as a civilian.',
+      image: '/img/kentglasses.jpg',
+      quantity: 30,
+      categoryId: 4
+    }, {
+      name: 'Stormtrooper Statue',
+      price: 79.99,
+      description:
+        'A fullsized replica that looks so real that can fool even a Jedi master',
+      image: '/img/stormtrooper.jpg',
+      quantity: 14,
+      categoryId: 3
+    }, {
+      name: 'Lightsaber',
+      price: 12.99,
+      description:
+        'Handheld weapon that is used by the Jedi, Sith, and other Force-sensitives',
+      image: '/img/lightsaber.jpg',
+      quantity: 50,
+      categoryId: 3
+    }, {
+      name: 'C3PO',
+      price: 49.99,
+      description:
+        'A droid programmed for etiquette and protocol and fluent in more than seven million forms of communication',
+      image: '/img/c3po.jpg',
+      quantity: 28,
+      categoryId: 3
+    }, {
+      name: 'R2D2',
+      price: 59.99,
+      description:
+        'A resourceful astromech droid manufactured by Industrial Automaton with masculine programming',
+      image: '/img/r2d2.jpg',
+      quantity: 25,
+      categoryId: 3
+    }, {
+      name: 'Elder wand',
+      price: 12.50,
+      description:
+        'This is a super special wand that can defeat he-who-must-not-be-named.',
+      image: '/img/elderwand.jpg',
+      quantity: 50,
+      categoryId: 2
+    }, {
+      name: 'Round glasses',
+      price: 5.99,
+      description:
+        'Match Harry Potter with these glasses.',
+      image: '/img/hpglasses.jpg',
+      quantity: 100,
+      categoryId: 2
+    }, {
+      name: 'Voldemort Costume',
+      price: 19.99,
+      description:
+        'Scare your friends by dressing up as he-who-must-not-be-named.',
+      image: '/img/voldycostume.jpg',
+      quantity: 20,
+      categoryId: 2
+    },
+  ]
 
   await Promise.all(products.map(product => Product.create(product)))
 
