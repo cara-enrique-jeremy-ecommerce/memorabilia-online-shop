@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Product = db.define('product', {
@@ -6,7 +7,7 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      isDecimal: true,
+      isDecimal: true
     }
   },
   description: Sequelize.TEXT,
@@ -17,9 +18,9 @@ const Product = db.define('product', {
   quantity: Sequelize.INTEGER,
   stars: {
     type: Sequelize.INTEGER,
-    validate: { min: 1, max: 5}
-  },
+    validate: {min: 1, max: 5}
+  }
   //reviews: Sequelize.TEXT
 })
 
-module.exports = Product;
+module.exports = Product
