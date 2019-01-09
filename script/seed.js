@@ -53,7 +53,8 @@ async function seed() {
       image: '/img/kryptonite.jpg',
       quantity: 5,
       categoryId: 4
-    }, {
+    },
+    {
       name: 'Superman Cape',
       price: 19.99,
       description:
@@ -61,15 +62,16 @@ async function seed() {
       image: '/img/supermancape.jpg',
       quantity: 50,
       categoryId: 4
-    }, {
+    },
+    {
       name: 'Superman Underwear',
       price: 5.99,
-      description:
-        'No Superman costume is complete without the underwear...',
+      description: 'No Superman costume is complete without the underwear...',
       image: '/img/supermanunderwear.jpg',
       quantity: 25,
       categoryId: 4
-    }, {
+    },
+    {
       name: 'Clark Kent glasses',
       price: 4.99,
       description:
@@ -77,7 +79,8 @@ async function seed() {
       image: '/img/kentglasses.jpg',
       quantity: 30,
       categoryId: 4
-    }, {
+    },
+    {
       name: 'Stormtrooper Statue',
       price: 79.99,
       description:
@@ -85,7 +88,8 @@ async function seed() {
       image: '/img/stormtrooper.jpg',
       quantity: 14,
       categoryId: 3
-    }, {
+    },
+    {
       name: 'Lightsaber',
       price: 12.99,
       description:
@@ -93,7 +97,8 @@ async function seed() {
       image: '/img/lightsaber.jpg',
       quantity: 50,
       categoryId: 3
-    }, {
+    },
+    {
       name: 'C3PO',
       price: 49.99,
       description:
@@ -101,7 +106,8 @@ async function seed() {
       image: '/img/c3po.jpg',
       quantity: 28,
       categoryId: 3
-    }, {
+    },
+    {
       name: 'R2D2',
       price: 59.99,
       description:
@@ -109,23 +115,25 @@ async function seed() {
       image: '/img/r2d2.jpg',
       quantity: 25,
       categoryId: 3
-    }, {
+    },
+    {
       name: 'Elder wand',
-      price: 12.50,
+      price: 12.5,
       description:
         'This is a super special wand that can defeat he-who-must-not-be-named.',
       image: '/img/elderwand.jpg',
       quantity: 50,
       categoryId: 2
-    }, {
+    },
+    {
       name: 'Round glasses',
       price: 5.99,
-      description:
-        'Match Harry Potter with these glasses.',
+      description: 'Match Harry Potter with these glasses.',
       image: '/img/hpglasses.jpg',
       quantity: 100,
       categoryId: 2
-    }, {
+    },
+    {
       name: 'Voldemort Costume',
       price: 19.99,
       description:
@@ -133,47 +141,48 @@ async function seed() {
       image: '/img/voldycostume.jpg',
       quantity: 20,
       categoryId: 2
-    }, {
+    },
+    {
       name: 'Batmobile',
-      price: 75000.00,
-      description:
-        'Speed away in the quick getaway vehicle',
+      price: 75000.0,
+      description: 'Speed away in the quick getaway vehicle',
       image: '/img/batmobile.jpg',
       quantity: 5,
       categoryId: 1
-    }, {
+    },
+    {
       name: 'Batman Mask',
       price: 7.99,
-      description:
-        'Disguise your identity with this mask',
+      description: 'Disguise your identity with this mask',
       image: '/img/batmanmask.jpg',
       quantity: 20,
       categoryId: 1
-    }, {
+    },
+    {
       name: 'Batsuit',
       price: 19.99,
-      description:
-        'Save the day as Batman with this suit',
+      description: 'Save the day as Batman with this suit',
       image: '/img/batsuit.jpg',
       quantity: 30,
       categoryId: 1
-    }, {
+    },
+    {
       name: 'Tron Light Cycle',
       price: 5000,
-      description:
-        'Get our own high speed personal transport vehicle!',
+      description: 'Get our own high speed personal transport vehicle!',
       image: '/img/tronlightcycle.jpg',
       quantity: 25,
       categoryId: 7
-    }, {
+    },
+    {
       name: 'Tron Helmet',
       price: 19.99,
-      description:
-        'A must have safety addition to use with the light cycle.',
+      description: 'A must have safety addition to use with the light cycle.',
       image: '/img/tronhelmet.jpg',
       quantity: 200,
       categoryId: 7
-    }, {
+    },
+    {
       name: 'Identity Light Disc',
       price: 25,
       description:
@@ -181,15 +190,16 @@ async function seed() {
       image: '/img/identitylightdisc.jpg',
       quantity: 100,
       categoryId: 7
-    }, {
+    },
+    {
       name: 'Hoverboard',
       price: 50,
-      description:
-        'A hover converted board-shaped vehicle',
+      description: 'A hover converted board-shaped vehicle',
       image: '/img/hoverboard.jpg',
       quantity: 200,
       categoryId: 9
-    }, {
+    },
+    {
       name: 'DeLorean Time Machine',
       price: 100000,
       description:
@@ -197,7 +207,8 @@ async function seed() {
       image: '/img/delorean.jpg',
       quantity: 3,
       categoryId: 9
-    }, {
+    },
+    {
       name: '1955 Red Bass Guitar',
       price: 250,
       description:
@@ -205,15 +216,16 @@ async function seed() {
       image: '/img/bassguitar.jpg',
       quantity: 15,
       categoryId: 9
-    }, {
+    },
+    {
       name: 'Ring of Mordor',
       price: 1000000,
-      description:
-        'One ring to rule them all',
+      description: 'One ring to rule them all',
       image: '/img/ringofmordor.jpg',
       quantity: 1,
       categoryId: 5
-    }, {
+    },
+    {
       name: 'Green Leaf Pin',
       price: 50,
       description:
@@ -221,11 +233,11 @@ async function seed() {
       image: '/img/greenleaf.jpg',
       quantity: 12,
       categoryId: 5
-    }, {
+    },
+    {
       name: 'Middle Earth Map',
       price: 50,
-      description:
-        'Use this to navigate through middle earth.',
+      description: 'Use this to navigate through middle earth.',
       image: '/img/middleearthmap.jpg',
       quantity: 20,
       categoryId: 5
