@@ -78,3 +78,8 @@ nav a:hover {
   justify-content: space-between;
   flex-direction: column;
 }
+
+.product-snapshot {
+  height: 150px;
+  width: 200px;
+}
