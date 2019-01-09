@@ -25,10 +25,6 @@ async function seed() {
   console.log(`seeded ${users.length} users`)
 
   const categories = await Promise.all([
-    Category.create({
-      title: 'Back to the Future',
-      imageURL: '/img/back-to-the-future.png'
-    }),
     Category.create({title: 'Batman', imageURL: '/img/batman.png'}),
     Category.create({title: 'Harry Potter', imageURL: '/img/harry-potter.png'}),
     Category.create({title: 'Star Wars', imageURL: '/img/star-wars.png'}),
@@ -39,7 +35,11 @@ async function seed() {
     }),
     Category.create({title: 'Transformers', imageURL: '/img/transformers.png'}),
     Category.create({title: 'Tron: Legacy', imageURL: '/img/tron.jpeg'}),
-    Category.create({title: 'X-MEN', imageURL: '/img/x-men.png'})
+    Category.create({title: 'X-MEN', imageURL: '/img/x-men.png'}),
+    Category.create({
+      title: 'Back to the Future',
+      imageURL: '/img/back-to-the-future.png'
+    })
   ])
 
   console.log(`seeded ${categories.length} categories`)
@@ -133,7 +133,103 @@ async function seed() {
       image: '/img/voldycostume.jpg',
       quantity: 20,
       categoryId: 2
-    },
+    }, {
+      name: 'Batmobile',
+      price: 75000.00,
+      description:
+        'Speed away in the quick getaway vehicle',
+      image: '/img/batmobile.jpg',
+      quantity: 5,
+      categoryId: 1
+    }, {
+      name: 'Batman Mask',
+      price: 7.99,
+      description:
+        'Disguise your identity with this mask',
+      image: '/img/batmanmask.jpg',
+      quantity: 20,
+      categoryId: 1
+    }, {
+      name: 'Batsuit',
+      price: 19.99,
+      description:
+        'Save the day as Batman with this suit',
+      image: '/img/batsuit.jpg',
+      quantity: 30,
+      categoryId: 1
+    }, {
+      name: 'Tron Light Cycle',
+      price: 5000,
+      description:
+        'Get our own high speed personal transport vehicle!',
+      image: '/img/tronlightcycle.jpg',
+      quantity: 25,
+      categoryId: 7
+    }, {
+      name: 'Tron Helmet',
+      price: 19.99,
+      description:
+        'A must have safety addition to use with the light cycle.',
+      image: '/img/tronhelmet.jpg',
+      quantity: 200,
+      categoryId: 7
+    }, {
+      name: 'Identity Light Disc',
+      price: 25,
+      description:
+        'The most fundamental piece of equipment to programs in the Tron system',
+      image: '/img/identitylightdisc.jpg',
+      quantity: 100,
+      categoryId: 7
+    }, {
+      name: 'Hoverboard',
+      price: 50,
+      description:
+        'A hover converted board-shaped vehicle',
+      image: '/img/hoverboard.jpg',
+      quantity: 200,
+      categoryId: 9
+    }, {
+      name: 'DeLorean Time Machine',
+      price: 100000,
+      description:
+        'Travel back in time with the DeLorean. Use caution in your actions, or you might not exist in the present!',
+      image: '/img/delorean.jpg',
+      quantity: 3,
+      categoryId: 9
+    }, {
+      name: '1955 Red Bass Guitar',
+      price: 250,
+      description:
+        'Play the same bass guitar that Marty McFly did to save his future!',
+      image: '/img/bassguitar.jpg',
+      quantity: 15,
+      categoryId: 9
+    }, {
+      name: 'Ring of Mordor',
+      price: 1000000,
+      description:
+        'One ring to rule them all',
+      image: '/img/ringofmordor.jpg',
+      quantity: 1,
+      categoryId: 5
+    }, {
+      name: 'Green Leaf Pin',
+      price: 50,
+      description:
+        'Signal to allies that you are a part of the Fellowship of the Ring by wearing this pin',
+      image: '/img/greenleaf.jpg',
+      quantity: 12,
+      categoryId: 5
+    }, {
+      name: 'Middle Earth Map',
+      price: 50,
+      description:
+        'Use this to navigate through middle earth.',
+      image: '/img/middleearthmap.jpg',
+      quantity: 20,
+      categoryId: 5
+    }
   ]
 
   await Promise.all(products.map(product => Product.create(product)))
