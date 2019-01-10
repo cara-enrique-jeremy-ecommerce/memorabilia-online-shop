@@ -101,6 +101,11 @@ label {
   width: 200px;
 }
 
+.single-productview {
+  height: 150px;
+  width: 200px;
+}
+
 .animated {
   transition: all 0.35s ease;
 }
