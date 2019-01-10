@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import CategoryList from './CategoryList'
 
 /**
  * COMPONENT
@@ -10,7 +11,9 @@ export const UserHome = props => {
 
   return (
     <div className="container">
-      <h3>Welcome, {email}</h3>
+      <h3 className="welcomeuser">Welcome, {email}</h3>
+      <h1>Check out our Collections!</h1>
+      <CategoryList />
     </div>
   )
 }

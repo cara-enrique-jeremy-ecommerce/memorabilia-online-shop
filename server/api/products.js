@@ -38,3 +38,21 @@ router.put('/:productId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body, {
+      returning: true
+    })
+
+    const newProductWithCategoryDetails = await Product.findById(
+      newProduct.id,
+      {
+        include: 'category'
+      }
+    )
+    res.json(newProductWithCategoryDetails)
+  } catch (error) {
+    next(error)
+  }
+})
