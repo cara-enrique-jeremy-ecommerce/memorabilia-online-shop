@@ -1,32 +1,16 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-// import {connect} from 'react-redux'
+import CategoryList from './CategoryList'
 
 /**
  * COMPONENT
  */
-export const GuestHome = props => {
+export const GuestHome = () => {
   return (
     <div className="container">
-      <h3>Hello, Guest!</h3>
+      <h1>Check out our Collections!</h1>
+      <CategoryList />
     </div>
   )
 }
 
-/**
- * CONTAINER
- */
-// const mapState = state => {
-//   return {
-//     email: state.user.email
-//   }
-// }
-
 export default GuestHome
-
-/**
- * PROP TYPES
- */
-// GuestHome.propTypes = {
-//   email: PropTypes.string
-// }
