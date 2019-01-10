@@ -14,7 +14,7 @@ class ProductList extends React.Component {
     const user = this.props.user
 
     return (
-      <div>
+      <div className="container products">
         {products &&
           products.map(product => {
             return (
