@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import SingleProductSnapshot from './SingleProductSnapshot'
-import {fetchAllProducts} from '../store/GOT_PRODUCTS'
+import {fetchAllProducts} from '../store/products'
 import EditProductForm from './EditProductForm'
 
 class ProductList extends React.Component {
