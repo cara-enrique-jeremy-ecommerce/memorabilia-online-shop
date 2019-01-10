@@ -3,6 +3,7 @@ import axios from 'axios'
 // action types
 
 const GOT_PRODUCTS = 'GOT_PRODUCTS'
+const ADD_PRODUCT = 'ADD_PRODUCT'
 
 // initial state
 
@@ -17,6 +18,13 @@ const gotProducts = products => {
   }
 }
 
+const addProduct = newProduct => {
+  return {
+    type: ADD_PRODUCT,
+    newProduct
+  }
+}
+
 // thunk creator
 
 export const fetchAllProducts = async dispatch => {
@@ -28,12 +36,22 @@ export const fetchAllProducts = async dispatch => {
   }
 }
 
+export const postProduct = newProduct => {
+  return async dispatch => {
+    const res = await axios.post('/api/products', newProduct)
+    const {data: product} = res
+    dispatch(addProduct(product))
+  }
+}
+
 // reducer
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_PRODUCTS:
       return action.products
+    case ADD_PRODUCT:
+      return [...state, action.newProduct]
     default:
       return state
   }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import SingleProductSnapshot from './SingleProductSnapshot'
 import {fetchAllProducts} from '../store/products'
 import EditProductForm from './EditProductForm'
+import AddProductForm from './AddProductForm'
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -15,6 +16,7 @@ class ProductList extends React.Component {
 
     return (
       <div className="container products">
+        {user.adminPrivilege && <AddProductForm />}
         {products &&
           products.map(product => {
             return (
