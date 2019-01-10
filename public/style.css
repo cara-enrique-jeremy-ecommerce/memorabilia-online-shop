@@ -105,6 +105,10 @@ label {
   transition: all 0.35s ease;
 }
 
+.welcomeuser {
+  text-align: right;
+}
+
 /******************************/
 /******* NAVIGATION BAR *******/
 /******************************/
@@ -209,4 +213,24 @@ nav a:hover {
 
 .product-item {
   margin: 30px;
+}
+
+/******************************/
+/********* CATEGORIES *********/
+/******************************/
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.category-item {
+  margin-bottom: 60px;
+}
+
+.category-snapshot {
+  width: 300px;
+  height: 200px;
 }

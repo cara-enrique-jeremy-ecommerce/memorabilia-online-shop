@@ -30,7 +30,7 @@ async function seed() {
   console.log(`seeded ${users.length} users`)
 
   const categories = await Promise.all([
-    Category.create({title: 'Batman', imageURL: '/img/batman.png'}),
+    Category.create({title: 'Batman', imageURL: '/img/batman.jpg'}),
     Category.create({title: 'Harry Potter', imageURL: '/img/harry-potter.png'}),
     Category.create({title: 'Star Wars', imageURL: '/img/star-wars.png'}),
     Category.create({title: 'Superman', imageURL: '/img/superman.jpg'}),
