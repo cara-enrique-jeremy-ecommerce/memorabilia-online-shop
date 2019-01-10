@@ -2,7 +2,7 @@ import React from 'react'
 
 const SingleProductSnapshot = props => {
   return (
-    <div>
+    <div className="product-item">
       <p>
         <img className="product-snapshot" src={props.product.image} />
       </p>
