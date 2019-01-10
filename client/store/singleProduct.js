@@ -3,6 +3,7 @@ import axios from 'axios'
 // action type
 
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
+const GOT_SINGLE_PRODUCT = 'GOT_SINGLE_PRODUCT'
 
 // action creator
 
@@ -10,6 +11,13 @@ const editProduct = editedProduct => {
   return {
     type: EDIT_PRODUCT,
     editedProduct
+  }
+}
+
+const gotSingleProduct = product => {
+  return {
+    type: GOT_SINGLE_PRODUCT,
+    product
   }
 }
 
@@ -23,12 +31,23 @@ export const updateProduct = (productId, updatedProduct) => {
   }
 }
 
+export const fetchSingleProduct = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/products/${id}`)
+    dispatch(gotSingleProduct(res.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // reducer
 
 export default function(state = {}, action) {
   switch (action.type) {
     case EDIT_PRODUCT:
       return action.editedProduct
+    case GOT_SINGLE_PRODUCT:
+      return action.product
     default:
       return state
   }
