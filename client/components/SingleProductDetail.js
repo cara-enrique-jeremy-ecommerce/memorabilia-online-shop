@@ -3,24 +3,32 @@ import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 
 class SingleProductDetail extends Component {
-  async componentDidMount() {
-    try {
-      const productId = Number(this.props.match.params.productId)
-      await this.props.getSock(productId)
-    } catch (error) {
-      console.error(error)
-    }
+  componentDidMount() {
+    this.props.fetchSingleProduct(this.props.match.params.productId)
   }
 
   render() {
-    const productId = this.props.match.params.productId
-    console.log('single product! ', this.props.product)
-    return <div>testing 123</div>
+    const {product} = this.props
+
+    return (
+      <div className="product-item">
+        {product && (
+          <div>
+            <img className="single-productview" src={product.image} />
+            <h1>{product.name}</h1>
+            <p>Price: ${product.price}</p>
+            <h3>Product Description</h3>
+            <p>{product.description}</p>
+          </div>
+        )}
+      </div>
+    )
   }
 }
 
 const mapStateToProps = state => ({
-  product: state.product[0]
+  product: state.singleProduct,
+  categories: state.categories
 })
 
 const mapDispatchToProps = dispatch => ({
