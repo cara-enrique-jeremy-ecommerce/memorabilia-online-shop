@@ -15,6 +15,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:productId', async (req, res, next) => {
+  try {
+    const singleProduct = await Product.findOne(req.body, {
+      where: {id: req.params.productId},
+      returning: true
+    })
+    res.json(singleProduct)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/:productId', async (req, res, next) => {
   try {
     const updatedProduct = await Product.update(req.body, {

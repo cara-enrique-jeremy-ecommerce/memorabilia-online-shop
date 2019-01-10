@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct} from '../store/GOT_PRODUCTS'
+import {fetchSingleProduct} from '../store/singleProduct'
 
 class SingleProductDetail extends Component {
   async componentDidMount() {
