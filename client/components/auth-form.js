@@ -12,24 +12,27 @@ const AuthForm = props => {
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit} name={name}>
-        <div className="email-field">
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div className="password-field">
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
+        <h1>{displayName}</h1>
+        <label htmlFor="email">
+          Email <span className="required">*</span>
+        </label>
+        <input name="email" type="text" />
+        <label htmlFor="password">
+          Password <span className="required">*</span>
+        </label>
+        <input name="password" type="password" />
+        <button type="submit" className="form-btn">
+          {displayName}
+        </button>
+
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <a href="/auth/google">
+        <div className="google-btn animated">
+          <i className="fa fa-google" aria-hidden="true" />
+          {displayName} with Google
+        </div>
+      </a>
     </div>
   )
 }
@@ -44,7 +47,7 @@ const AuthForm = props => {
 const mapLogin = state => {
   return {
     name: 'login',
-    displayName: 'Login',
+    displayName: 'Log in',
     error: state.user.error
   }
 }

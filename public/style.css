@@ -15,9 +15,75 @@ label {
   display: block;
 }
 
-form div {
+.form div {
   margin: 1em;
   display: inline-block;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 60px auto 20px;
+}
+
+.form h2 {
+  text-align: left;
+}
+
+.form label {
+  text-align: left;
+}
+
+.form input {
+  margin: 0.2em 0 2em;
+  font-size: 1em;
+  outline: none;
+}
+
+.form-btn {
+  background: #f0c14b;
+  border: 1px solid #444;
+  border-color: #a88734 #9c7e31 #846a29;
+  border-radius: 3px;
+  color: #fff;
+  color: #000;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 8px;
+  width: 100%;
+}
+
+.form-btn:hover {
+  background-color: #65878f;
+}
+
+.required {
+  color: rgb(241, 74, 8);
+}
+
+.google-btn {
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4285f6;
+  font-size: 1em;
+  padding: 0 45px;
+  margin: 0 auto;
+  width: 300px;
+  height: 35px;
+  color: #fff;
+}
+
+.google-btn i {
+  font-size: 1.3em;
+}
+
+.google-btn:hover {
+  background-color: #bbb;
+  color: #4285f6;
 }
 
 /******************************/
@@ -28,12 +94,6 @@ form div {
   width: 80%;
   margin: 40px auto 60px;
   text-align: center;
-}
-
-.form {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
 }
 
 .product-snapshot {
