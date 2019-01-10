@@ -10,7 +10,7 @@ const Product = db.define('product', {
   description: Sequelize.TEXT,
   image: {
     type: Sequelize.STRING,
-    defaultValue: '/defaultproduct.jpg'
+    defaultValue: '/img/default_movie_image.jpg'
   },
   quantity: Sequelize.INTEGER,
   stars: {
