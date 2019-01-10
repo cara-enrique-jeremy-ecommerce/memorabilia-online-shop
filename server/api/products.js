@@ -5,8 +5,23 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll()
+    const products = await Product.findAll({
+      include: 'category',
+      order: [['id', 'ASC']]
+    })
     res.json(products)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:productId', async (req, res, next) => {
+  try {
+    const updatedProduct = await Product.update(req.body, {
+      where: {id: req.params.productId},
+      returning: true
+    })
+    res.json(updatedProduct)
   } catch (error) {
     next(error)
   }
