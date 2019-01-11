@@ -30,9 +30,12 @@ router.get('/:productId', async (req, res, next) => {
 
 router.put('/:productId', async (req, res, next) => {
   try {
-    const updatedProduct = await Product.update(req.body, {
+    await Product.update(req.body, {
       where: {id: req.params.productId},
       returning: true
+    })
+    const updatedProduct = await Product.findById(req.params.productId, {
+      include: 'category'
     })
     res.json(updatedProduct)
   } catch (error) {
