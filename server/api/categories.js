@@ -11,3 +11,13 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
+
+// GET /api/categories/:categoryId
+router.get('/:categoryId', async (req, res, next) => {
+  try {
+    const category = await Category.findById(req.params.categoryId)
+    res.json(category)
+  } catch (error) {
+    next(error)
+  }
+})
