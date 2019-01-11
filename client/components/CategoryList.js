@@ -29,7 +29,7 @@ class CategoryList extends React.Component {
 
 const mapStateToProps = state => ({
   categories: state.categories,
-  user: state.categories
+  user: state.user
 })
 
 export default connect(mapStateToProps)(CategoryList)
