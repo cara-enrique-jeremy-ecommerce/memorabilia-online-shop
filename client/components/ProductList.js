@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import SingleProductSnapshot from './SingleProductSnapshot'
 import {fetchCurrentCategory} from '../store/currentCategory'
 import {fetchAllProducts} from '../store/products'
-import EditProductForm from './EditProductForm'
-import AddProductForm from './AddProductForm'
+import {Link} from 'react-router-dom'
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -14,39 +13,37 @@ class ProductList extends React.Component {
   render() {
     const {products, user, currentCategory} = this.props
 
+    let renderProducts = products ? products.slice() : products
+
+    if (currentCategory.id || this.props.match.params.categoryId) {
+      renderProducts = products.filter(product => {
+        return (
+          product.categoryId ===
+          (currentCategory.id || Number(this.props.match.params.categoryId))
+        )
+      })
+    }
+
     return (
       <div className="container products">
-        {user.adminPrivilege && <AddProductForm />}
+        {user.adminPrivilege && (
+          <Link to="/add-product">
+            <div className="add-to-cart-btn">Add Product</div>
+          </Link>
+        )}
         {products &&
-          (currentCategory.id || this.props.match.params.categoryId
-            ? products
-                .filter(product => {
-                  return (
-                    product.categoryId ===
-                    (currentCategory.id ||
-                      Number(this.props.match.params.categoryId))
-                  )
-                })
-                .map(product => {
-                  return (
-                    <div key={product.id}>
-                      <SingleProductSnapshot product={product} />
-                      {user.adminPrivilege && (
-                        <EditProductForm product={product} />
-                      )}
-                    </div>
-                  )
-                })
-            : products.map(product => {
-                return (
-                  <div key={product.id}>
-                    <SingleProductSnapshot product={product} />
-                    {user.adminPrivilege && (
-                      <EditProductForm product={product} />
-                    )}
-                  </div>
-                )
-              }))}
+          renderProducts.map(product => {
+            return (
+              <div key={product.id}>
+                <SingleProductSnapshot product={product} />
+                {user.adminPrivilege && (
+                  <Link to="/edit-product">
+                    <div className="add-to-cart-btn">Edit Product</div>
+                  </Link>
+                )}
+              </div>
+            )
+          })}
       </div>
     )
   }

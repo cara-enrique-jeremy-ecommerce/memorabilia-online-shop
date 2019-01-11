@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import SingleCategorySnapshot from './SingleCategorySnapshot'
 import {fetchAllCategories} from '../store/categories'
+import {Link} from 'react-router-dom'
 
 class CategoryList extends React.Component {
   componentDidMount() {
@@ -9,10 +10,15 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    const {categories} = this.props
+    const {categories, user} = this.props
 
     return (
       <div className="container categories">
+        {user.adminPrivilege && (
+          <Link to="/add-product">
+            <div className="add-to-cart-btn">Add Product</div>
+          </Link>
+        )}
         {categories &&
           categories.map(category => {
             return (
