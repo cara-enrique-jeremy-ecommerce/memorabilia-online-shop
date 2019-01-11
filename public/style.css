@@ -7,6 +7,10 @@ body {
   font-size: 16px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   text-decoration: none;
 }
@@ -94,11 +98,6 @@ label {
   width: 80%;
   margin: 40px auto 60px;
   text-align: center;
-}
-
-.product-snapshot {
-  height: 150px;
-  width: 200px;
 }
 
 .single-productview {
@@ -207,20 +206,6 @@ nav a:hover {
 }
 
 /******************************/
-/********** PRODUCTS **********/
-/******************************/
-
-.products {
-  justify-content: space-between;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.product-item {
-  margin: 30px;
-}
-
-/******************************/
 /********* CATEGORIES *********/
 /******************************/
 
@@ -238,4 +223,57 @@ nav a:hover {
 .category-snapshot {
   width: 300px;
   height: 200px;
+}
+
+/******************************/
+/********** PRODUCTS **********/
+/******************************/
+
+.products {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  width: 250px;
+  margin: 30px;
+  border: 1px solid #eee;
+}
+
+.product-snapshot {
+  padding: 30px 0;
+  /* border: 1px solid green; */
+  height: 200px;
+  width: auto;
+  max-width: 250px;
+}
+
+.product-info {
+  background-color: #f7f7f7;
+  border: 1px solid #eee;
+  padding: 0 20px;
+}
+
+.product-info h3 {
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2em;
+}
+
+.product-info span {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.fa.fa-star-o {
+  color: #c45500;
+}
+
+.product-info .price {
+  color: #b12704;
+}
+
+.product-info .caption {
+  font-size: 0.8em;
 }

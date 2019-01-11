@@ -1,12 +1,34 @@
 import React from 'react'
 
+// Helper functions for price's commas and caption sliced from description
+
+const priceWithCommas = price => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
+const createCaption = description => {
+  return `${description.slice(0, 55)}...`
+}
+
 const SingleProductSnapshot = props => {
+  const {name, image, category, price, description} = props.product
+
   return (
     <div className="product-item">
-      <img className="product-snapshot" src={props.product.image} />
-      <p>Category: {props.product.category.title}</p>
-      <p>Item Name: {props.product.name}</p>
-      <p>${props.product.price}</p>
+      <img className="product-snapshot" src={image} />
+      <div className="product-info">
+        <h3>{name}</h3>
+        <span>- {category.title} -</span>
+        <p className="caption">{createCaption(description)}</p>
+        <p>
+          <i className="fa fa-star-o" aria-hidden="true" />
+          <i className="fa fa-star-o" aria-hidden="true" />
+          <i className="fa fa-star-o" aria-hidden="true" />
+          <i className="fa fa-star-o" aria-hidden="true" />
+          <i className="fa fa-star-o" aria-hidden="true" />
+        </p>
+        <p className="price">${priceWithCommas(price)}</p>
+      </div>
     </div>
   )
 }
