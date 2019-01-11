@@ -12,7 +12,6 @@ class ProductList extends React.Component {
   }
 
   render() {
-    console.log('path: ', this.props.match.path)
     const {products, user, currentCategory} = this.props
 
     return (

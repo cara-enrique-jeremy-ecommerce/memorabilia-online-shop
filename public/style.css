@@ -191,6 +191,64 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* DROPDOWN MENU  */
+
+.dropdown {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  width: 178px;
+  height: 18px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+.dropdown-button:before {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border: 8px solid;
+  border-color: #fff transparent transparent transparent;
+  right: 13px;
+  top: 5px;
+}
+.dropdown-button:hover {
+  color: #f4cf7d;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top: 45px;
+  right: 0px;
+  width: 200px;
+  background-color: white;
+  font-weight: bold;
+  position: absolute;
+
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+li {
+  border-bottom: 1px solid #e5e5e5;
+  letter-spacing: 0.03em;
+  padding: 8px 16px;
+}
+li:last-child {
+  border-bottom: none;
+}
+li:hover {
+  background-color: #ccc;
+  background-color: #f4cf7d;
+  color: #fff;
+}
+
+/* SEARCH BAR */
+
 .searchbar input {
   width: 150px;
   font-size: 1em;
