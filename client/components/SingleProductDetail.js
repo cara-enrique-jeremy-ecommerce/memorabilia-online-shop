@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
+import {priceWithCommas} from './SingleProductSnapshot'
+import {Link} from 'react-router-dom'
 
 class SingleProductDetail extends Component {
   componentDidMount() {
@@ -9,16 +11,41 @@ class SingleProductDetail extends Component {
 
   render() {
     const {product} = this.props
-
+    const {image, name, price, description, quantity} = product
+    console.log(quantity)
     return (
-      <div className="product-item">
+      <div className="single-product">
         {product && (
-          <div>
-            <img className="single-productview" src={product.image} />
-            <h1>{product.name}</h1>
-            <p>Price: ${product.price}</p>
-            <h3>Product Description</h3>
-            <p>{product.description}</p>
+          <div className="single-product-detail">
+            <img className="single-product-image" src={image} />
+            <div className="single-product-info">
+              <h1>{name}</h1>
+              <p className="rating">
+                <i className="fa fa-star-o" aria-hidden="true" />
+                <i className="fa fa-star-o" aria-hidden="true" />
+                <i className="fa fa-star-o" aria-hidden="true" />
+                <i className="fa fa-star-o" aria-hidden="true" />
+                <i className="fa fa-star-o" aria-hidden="true" />
+              </p>
+              <p className="inventory">Only ${quantity} left!</p>
+              <div className="main-info">
+                {price && (
+                  <p className="price">
+                    Price: <span>${priceWithCommas(price)}</span>
+                  </p>
+                )}
+                <Link to="/">
+                  <p className="add-to-cart-btn">Add to Cart!</p>
+                </Link>
+              </div>
+
+              <Link to="/" className="customer-reviews">
+                27 customer reviews
+              </Link>
+
+              <h3>Description</h3>
+              <p>{description}</p>
+            </div>
           </div>
         )}
       </div>
@@ -27,8 +54,7 @@ class SingleProductDetail extends Component {
 }
 
 const mapStateToProps = state => ({
-  product: state.singleProduct,
-  categories: state.categories
+  product: state.singleProduct
 })
 
 const mapDispatchToProps = dispatch => ({
