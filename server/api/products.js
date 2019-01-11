@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:productId', async (req, res, next) => {
   try {
-    const singleProduct = await Product.findOne(req.body, {
+    const singleProduct = await Product.findOne({
       where: {id: req.params.productId},
       returning: true
     })
@@ -34,6 +34,24 @@ router.put('/:productId', async (req, res, next) => {
       returning: true
     })
     res.json(updatedProduct)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body, {
+      returning: true
+    })
+
+    const newProductWithCategoryDetails = await Product.findById(
+      newProduct.id,
+      {
+        include: 'category'
+      }
+    )
+    res.json(newProductWithCategoryDetails)
   } catch (error) {
     next(error)
   }

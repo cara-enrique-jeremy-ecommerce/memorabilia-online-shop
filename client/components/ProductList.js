@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import SingleProductSnapshot from './SingleProductSnapshot'
+import {fetchCurrentCategory} from '../store/currentCategory'
 import {fetchAllProducts} from '../store/products'
 import EditProductForm from './EditProductForm'
-import {fetchCurrentCategory} from '../store/currentCategory'
+import AddProductForm from './AddProductForm'
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class ProductList extends React.Component {
 
     return (
       <div className="container products">
+        {user.adminPrivilege && <AddProductForm />}
         {products &&
           (currentCategory.id || this.props.match.params.categoryId
             ? products
