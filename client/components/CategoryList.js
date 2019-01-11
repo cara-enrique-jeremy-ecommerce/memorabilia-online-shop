@@ -1,14 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import SingleCategorySnapshot from './SingleCategorySnapshot'
-import {fetchAllCategories} from '../store/categories'
 import {Link} from 'react-router-dom'
 
 class CategoryList extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllCategories()
-  }
-
   render() {
     const {categories, user} = this.props
 
@@ -32,17 +27,9 @@ class CategoryList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    categories: state.categories,
-    user: state.user
-  }
-}
+const mapStateToProps = state => ({
+  categories: state.categories,
+  user: state.categories
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllCategories: () => dispatch(fetchAllCategories)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)
+export default connect(mapStateToProps)(CategoryList)
