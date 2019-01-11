@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {postProduct} from '../store/products'
+import {fetchAllCategories} from '../store/categories'
 
 class AddProductForm extends React.Component {
   constructor(props) {
@@ -65,6 +66,18 @@ class AddProductForm extends React.Component {
             onChange={this.handleChange}
           />
           <p />
+          <select name="selectedCategory" onChange={this.changeSelected}>
+            <option>--</option>
+            {campuses.map(campus => {
+              return (
+                <option key={campus.id} value={campus.id}>
+                  {campus.name}
+                </option>
+              )
+            })}
+          </select>
+
+          <p />
           <button type="submit">Add Product</button>
         </form>
       </div>
@@ -72,10 +85,17 @@ class AddProductForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    postProduct: newProduct => dispatch(postProduct(newProduct))
+    categories: state.categories
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddProductForm)
+const mapDispatchToProps = dispatch => {
+  return {
+    postProduct: newProduct => dispatch(postProduct(newProduct)),
+    fetchAllCategories: () => dispatch(fetchAllCategories())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProductForm)
