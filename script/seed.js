@@ -30,18 +30,48 @@ async function seed() {
   console.log(`seeded ${users.length} users`)
 
   const categories = await Promise.all([
-    Category.create({title: 'Batman', imageURL: '/img/batman.jpg'}),
-    Category.create({title: 'Harry Potter', imageURL: '/img/harry-potter.png'}),
-    Category.create({title: 'Star Wars', imageURL: '/img/star-wars.png'}),
-    Category.create({title: 'Superman', imageURL: '/img/superman.jpg'}),
     Category.create({
+      name: 'batman',
+      title: 'Batman',
+      imageURL: '/img/batman.jpg'
+    }),
+    Category.create({
+      name: 'harry-potter',
+      title: 'Harry Potter',
+      imageURL: '/img/harry-potter.png'
+    }),
+    Category.create({
+      name: 'star-wars',
+      title: 'Star Wars',
+      imageURL: '/img/star-wars.png'
+    }),
+    Category.create({
+      name: 'superman',
+      title: 'Superman',
+      imageURL: '/img/superman.jpg'
+    }),
+    Category.create({
+      name: 'the-lord-of-the-rings',
       title: 'The Lord of the Rings',
       imageURL: '/img/the-lord-of-the-rings.png'
     }),
-    Category.create({title: 'Transformers', imageURL: '/img/transformers.png'}),
-    Category.create({title: 'Tron: Legacy', imageURL: '/img/tron.jpeg'}),
-    Category.create({title: 'X-MEN', imageURL: '/img/x-men.png'}),
     Category.create({
+      name: 'transformers',
+      title: 'Transformers',
+      imageURL: '/img/transformers.png'
+    }),
+    Category.create({
+      name: 'tron',
+      title: 'Tron: Legacy',
+      imageURL: '/img/tron.jpeg'
+    }),
+    Category.create({
+      name: 'x-men',
+      title: 'X-MEN',
+      imageURL: '/img/x-men.png'
+    }),
+    Category.create({
+      name: 'back-to-the-future',
       title: 'Back to the Future',
       imageURL: '/img/back-to-the-future.png'
     })
