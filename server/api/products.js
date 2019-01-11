@@ -19,7 +19,8 @@ router.get('/:productId', async (req, res, next) => {
   try {
     const singleProduct = await Product.findOne({
       where: {id: req.params.productId},
-      returning: true
+      returning: true,
+      include: 'category'
     })
     res.json(singleProduct)
   } catch (error) {

@@ -37,7 +37,7 @@ class ProductList extends React.Component {
               <div key={product.id}>
                 <SingleProductSnapshot product={product} />
                 {user.adminPrivilege && (
-                  <Link to="/edit-product">
+                  <Link to={`/products/${product.id}`}>
                     <div className="add-to-cart-btn">Edit Product</div>
                   </Link>
                 )}

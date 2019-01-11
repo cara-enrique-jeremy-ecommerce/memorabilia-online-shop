@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {priceWithCommas} from './SingleProductSnapshot'
 import {Link} from 'react-router-dom'
+import {EditProductForm} from './'
 
 class SingleProductDetail extends Component {
   componentDidMount() {
@@ -10,9 +11,9 @@ class SingleProductDetail extends Component {
   }
 
   render() {
-    const {product} = this.props
+    const {product, user} = this.props
     const {image, name, price, description, quantity} = product
-    console.log(quantity)
+
     return (
       <div className="single-product">
         {product && (
@@ -48,13 +49,20 @@ class SingleProductDetail extends Component {
             </div>
           </div>
         )}
+        {product &&
+          user.adminPrivilege && (
+            <div>
+              <EditProductForm product={product} />
+            </div>
+          )}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  product: state.singleProduct
+  product: state.singleProduct,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({

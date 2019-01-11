@@ -32,6 +32,8 @@ class EditProductForm extends React.Component {
   render() {
     const {name, price, description, quantity} = this.state
 
+    console.log('edit product props', this.props)
+
     return (
       <div>
         <h3>EDIT PRODUCT DETAILS</h3>

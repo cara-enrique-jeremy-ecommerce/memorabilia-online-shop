@@ -9,8 +9,7 @@ import {
   GuestHome,
   ProductList,
   SingleProductDetail,
-  AddProductForm,
-  EditProductForm
+  AddProductForm
 } from './components'
 import {me} from './store'
 import CategoryList from './components/CategoryList'
@@ -33,7 +32,6 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/add-product" component={AddProductForm} />
-        <Route path="edit-product" component={EditProductForm} />
         <Route exact path="/categories" component={CategoryList} />
         <Route path="/categories/:categoryId" component={ProductList} />
         <Route path="/products/:productId" component={SingleProductDetail} />
