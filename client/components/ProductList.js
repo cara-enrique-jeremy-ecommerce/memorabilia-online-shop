@@ -12,7 +12,6 @@ class ProductList extends React.Component {
   }
 
   render() {
-    console.log('path: ', this.props.match.path)
     const {products, user, currentCategory} = this.props
 
     return (
@@ -24,7 +23,8 @@ class ProductList extends React.Component {
                 .filter(product => {
                   return (
                     product.categoryId ===
-                    (currentCategory.id || this.props.match.params.categoryId)
+                    (currentCategory.id ||
+                      Number(this.props.match.params.categoryId))
                   )
                 })
                 .map(product => {
@@ -64,22 +64,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchAllProducts: () => dispatch(fetchAllProducts),
     getCurrentCategory: id => dispatch(fetchCurrentCategory(id))
-    // clearCurrentCategory: () => dispatch(gotCurrentCategory({}))
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList)
-
-// .filter(product => {
-//   return product.categoryId === currentCategory.id
-// })
-// .map(product => {
-//   return (
-//     <div key={product.id}>
-//       <SingleProductSnapshot product={product} />
-//       {user.adminPrivilege && (
-//         <EditProductForm product={product} />
-//       )}
-//     </div>
-//   )
-// })

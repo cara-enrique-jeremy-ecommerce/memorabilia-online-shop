@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {postProduct} from '../store/products'
 import {fetchAllCategories} from '../store/categories'
+import {Redirect} from 'react-router-dom'
 
 class AddProductForm extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class AddProductForm extends React.Component {
       price: 0,
       description: '',
       quantity: '',
-      categoryId: 1 // THIS IS A PLACEHOLDER UNTIL CATEGORY REDUCER IS COMPLETE
+      categoryId: '',
+      redirectHome: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,10 +26,14 @@ class AddProductForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     this.props.postProduct(this.state)
+    this.setState({redirectHome: true})
   }
 
   render() {
-    const {name, price, description, quantity} = this.state
+    const {name, price, description, quantity, redirectHome} = this.state
+    const {categories} = this.props
+
+    if (redirectHome) return <Redirect to="/" />
 
     return (
       <div>
@@ -66,15 +72,16 @@ class AddProductForm extends React.Component {
             onChange={this.handleChange}
           />
           <p />
-          <select name="selectedCategory" onChange={this.changeSelected}>
+          <select name="categoryId" onChange={this.handleChange}>
             <option>--</option>
-            {campuses.map(campus => {
-              return (
-                <option key={campus.id} value={campus.id}>
-                  {campus.name}
-                </option>
-              )
-            })}
+            {categories &&
+              categories.map(category => {
+                return (
+                  <option key={category.id} value={category.id}>
+                    {category.title}
+                  </option>
+                )
+              })}
           </select>
 
           <p />
