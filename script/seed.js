@@ -276,6 +276,60 @@ async function seed() {
       image: '/img/middleearthmap.jpg',
       quantity: 20,
       categoryId: 5
+    },
+    {
+      name: 'Wolverine Claws',
+      price: 599,
+      description:
+        'These claws made of adamantium are an exclusive. Add them to your collection!',
+      image: '/img/wolverineblade.jpg',
+      quantity: 13,
+      categoryId: 8
+    },
+    {
+      name: "Magneto's Helmet",
+      price: 1299,
+      description:
+        'This helmet is a special form of headgear designed to protect the wearer from all forms of telepathy\n\nGet it while it lasts!',
+      image: '/img/magnetohelmet.jpg',
+      quantity: 5,
+      categoryId: 8
+    },
+    {
+      name: "Cyclop's Glasses",
+      price: 69,
+      description:
+        'If you have optic beams, these glasses are the solution to keep them contained within their own vector field.',
+      image: '/img/cyclopsglasses.jpg',
+      quantity: 36,
+      categoryId: 8
+    },
+    {
+      name: 'Optimus Prime Statue',
+      price: 2499,
+      description:
+        'If you are a big fan of Transformers, you definitely need to add this Optimus Prime statue to your collection!',
+      image: '/img/optimusprime.jpg',
+      quantity: 7,
+      categoryId: 6
+    },
+    {
+      name: 'Bumblebee Head',
+      price: 899,
+      description:
+        'The head of Bumblebee is a unique piece of art that will add a touch of exclusiveness to your collection!',
+      image: '/img/bumblebee.jpg',
+      quantity: 1,
+      categoryId: 6
+    },
+    {
+      name: 'Frenzy Robot',
+      price: 199,
+      description:
+        'If you are looking for a frenzy little friend to have him smuggle aboard, then you are in the right place!',
+      image: '/img/frenzy.jpg',
+      quantity: 28,
+      categoryId: 6
     }
   ]
 

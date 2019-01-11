@@ -49,7 +49,7 @@ class SingleProductDetail extends Component {
             </div>
           </div>
         )}
-        {product &&
+        {product.id === Number(this.props.match.params.productId) &&
           user.adminPrivilege && (
             <div>
               <EditProductForm product={product} />
