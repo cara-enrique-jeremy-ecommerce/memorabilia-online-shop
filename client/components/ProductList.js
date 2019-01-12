@@ -25,25 +25,31 @@ class ProductList extends React.Component {
     }
 
     return (
-      <div className="container products">
+      <div className="container">
         {user.adminPrivilege && (
-          <Link to="/add-product">
-            <div className="add-to-cart-btn">Add Product</div>
-          </Link>
+          <div className="btn-right">
+            <Link to="/add-product">
+              <div className="add-to-cart-btn">Add Product</div>
+            </Link>
+          </div>
         )}
-        {products &&
-          renderProducts.map(product => {
-            return (
-              <div key={product.id}>
-                <SingleProductSnapshot product={product} />
-                {user.adminPrivilege && (
-                  <Link to={`/products/${product.id}`}>
-                    <div className="add-to-cart-btn">Edit Product</div>
-                  </Link>
-                )}
-              </div>
-            )
-          })}
+        <div className="products">
+          {products &&
+            renderProducts.map(product => {
+              return (
+                <div key={product.id}>
+                  <SingleProductSnapshot product={product} />
+                  {user.adminPrivilege && (
+                    <Link to={`/products/${product.id}`}>
+                      <div className="edit-btn add-to-cart-btn">
+                        Edit Product
+                      </div>
+                    </Link>
+                  )}
+                </div>
+              )
+            })}
+        </div>
       </div>
     )
   }
