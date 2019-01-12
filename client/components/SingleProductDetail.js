@@ -15,10 +15,12 @@ class SingleProductDetail extends Component {
     const {image, name, price, description, quantity} = product
 
     return (
-      <div className="single-product">
+      <div className="container">
         {product && (
           <div className="single-product-detail">
-            <img className="single-product-image" src={image} />
+            <div className="single-product-image">
+              <img src={image} />
+            </div>
             <div className="single-product-info">
               <h1>{name}</h1>
               <p className="rating">

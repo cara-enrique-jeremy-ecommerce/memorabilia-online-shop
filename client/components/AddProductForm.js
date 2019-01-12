@@ -36,26 +36,30 @@ class AddProductForm extends React.Component {
     if (redirectHome) return <Redirect to="/" />
 
     return (
-      <div>
-        <h3>ADD PRODUCT</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label>Product Name</label>
+      <div className="new-product container">
+        <h3>ADD A NEW PRODUCT</h3>
+        <form className="new-product-form form" onSubmit={this.handleSubmit}>
+          <label>
+            Product Name <span className="required">*</span>
+          </label>
           <input
             type="text"
             name="name"
             value={name}
             onChange={this.handleChange}
           />
-          <p />
-          <label>Price</label>
+          <label>
+            Price <span className="required">*</span>
+          </label>
           <input
             type="text"
             name="price"
             value={price}
             onChange={this.handleChange}
           />
-          <p />
-          <label>Description</label>
+          <label>
+            Description <span className="required">*</span>
+          </label>
           <textarea
             rows="5"
             cols="100"
@@ -63,15 +67,18 @@ class AddProductForm extends React.Component {
             value={description}
             onChange={this.handleChange}
           />
-          <p />
-          <label>Quantity</label>
+          <label>
+            Quantity <span className="required">*</span>
+          </label>
           <input
             type="text"
             name="quantity"
             value={quantity}
             onChange={this.handleChange}
           />
-          <p />
+          <label>
+            Category <span className="required">*</span>
+          </label>
           <select name="categoryId" onChange={this.handleChange}>
             <option>--</option>
             {categories &&
@@ -83,9 +90,9 @@ class AddProductForm extends React.Component {
                 )
               })}
           </select>
-
-          <p />
-          <button type="submit">Add Product</button>
+          <button className="add-product-btn add-to-cart-btn" type="submit">
+            Add Product
+          </button>
         </form>
       </div>
     )

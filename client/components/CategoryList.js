@@ -1,19 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import SingleCategorySnapshot from './SingleCategorySnapshot'
-import {Link} from 'react-router-dom'
 
 class CategoryList extends React.Component {
   render() {
-    const {categories, user} = this.props
+    const {categories} = this.props
 
     return (
       <div className="container categories">
-        {user.adminPrivilege && (
-          <Link to="/add-product">
-            <div className="add-to-cart-btn">Add Product</div>
-          </Link>
-        )}
         {categories &&
           categories.map(category => {
             return (
@@ -28,8 +22,7 @@ class CategoryList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories,
-  user: state.user
+  categories: state.categories
 })
 
 export default connect(mapStateToProps)(CategoryList)
