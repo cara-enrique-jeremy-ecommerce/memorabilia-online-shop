@@ -8,10 +8,7 @@ const Order = require('./order')
 Product.belongsTo(Category, {as: 'category'})
 Category.hasMany(Product)
 
-// User.hasMany(Order);
-Order.belongsTo(User, {as: 'user'})
-
-//Product.belongsToMany(Order, {as: 'order'});
+Product.belongsToMany(User, {through: 'cart'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
