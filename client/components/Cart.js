@@ -11,7 +11,7 @@ class Cart extends Component {
     }
   }
   async componentDidMount() {
-    const user = await this.props.getUser()
+    await this.props.getUser()
   }
 
   getCart = async userId => {
@@ -77,7 +77,7 @@ class Cart extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  socks: state.products
+  products: state.products
 })
 
 const mapDispatchToProps = dispatch => ({
