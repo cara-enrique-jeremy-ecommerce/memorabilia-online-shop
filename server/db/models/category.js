@@ -7,14 +7,16 @@ const Category = db.define('category', {
     allowNull: false,
     validate: {
       notEmpty: true
-    }
+    },
+    isUnique: true
   },
   title: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
-    }
+    },
+    isUnique: true
   },
   imageURL: {
     type: Sequelize.STRING,
