@@ -4,6 +4,7 @@ import {fetchSingleProduct} from '../store/singleProduct'
 import {priceWithCommas} from './SingleProductSnapshot'
 import {Link} from 'react-router-dom'
 import {EditProductForm} from './'
+import {addToCart} from '../store/cart'
 
 class SingleProductDetail extends Component {
   componentDidMount() {
@@ -37,9 +38,14 @@ class SingleProductDetail extends Component {
                     Price: <span>${priceWithCommas(price)}</span>
                   </p>
                 )}
-                <Link to="/">
-                  <p className="add-to-cart-btn">Add to Cart!</p>
-                </Link>
+                {/* <Link to="/"> */}
+                <p
+                  className="add-to-cart-btn"
+                  onClick={() => this.props.addToCart(user, product)}
+                >
+                  Add to Cart!
+                </p>
+                {/* </Link> */}
               </div>
 
               <Link to="/" className="customer-reviews">
@@ -68,7 +74,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchSingleProduct: id => dispatch(fetchSingleProduct(id))
+  fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
+  addToCart: (user, product) => dispatch(addToCart(user, product))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProductDetail)
