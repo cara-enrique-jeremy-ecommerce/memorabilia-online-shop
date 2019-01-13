@@ -41,19 +41,4 @@ router.get('/inCart/:cartNumber', async (req, res, next) => {
   }
 })
 
-router.get('/inCart/:cartNumber', async (req, res, next) => {
-  try {
-    const order = await Order.findById(req.params.cartNumber, {
-      include: [
-        {
-          model: Product
-        }
-      ]
-    })
-    res.json(order)
-  } catch (err) {
-    next(err)
-  }
-})
-
 module.exports = router
