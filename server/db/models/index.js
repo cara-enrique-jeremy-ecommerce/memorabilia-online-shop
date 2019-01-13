@@ -2,15 +2,30 @@ const User = require('./user')
 const Category = require('./category')
 const Product = require('./product')
 const Order = require('./order')
+const OrderItem = require('./orderitem')
+const Address = require('./address')
+const Review = require('./review')
 
 // Model's Associations
+
+User.hasMany(Address)
+Address.belongsTo(User)
 
 Product.belongsTo(Category, {as: 'category'})
 Category.hasMany(Product)
 
-// Creates a cart model which associates userId's and productId's
-Product.belongsToMany(User, {through: 'cart'})
-// Product.belongsToMany(User, {through: 'wishlist'}) // FOR TESTING
+User.hasMany(Order)
+Order.belongsTo(User)
+Order.belongsTo(Address)
+
+Review.belongsTo(User, {as: 'user'})
+Review.belongsTo(Product, {as: 'product'})
+Product.hasMany(Review)
+User.hasMany(Review)
+
+Order.hasMany(OrderItem)
+OrderItem.belongsTo(Order)
+OrderItem.belongsTo(Product)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -21,6 +36,7 @@ Product.belongsToMany(User, {through: 'cart'})
 module.exports = {
   User,
   Category,
-  Product,
-  Order
+  Order,
+  OrderItem,
+  Product
 }
