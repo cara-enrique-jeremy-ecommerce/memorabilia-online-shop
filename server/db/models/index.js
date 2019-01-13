@@ -8,6 +8,7 @@ const Order = require('./order')
 Product.belongsTo(Category, {as: 'category'})
 Category.hasMany(Product)
 
+// Creates a cart model which associates userId's and productId's
 Product.belongsToMany(User, {through: 'cart'})
 
 /**
