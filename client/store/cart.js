@@ -32,7 +32,6 @@ export const fetchCart = user => {
   }
 }
 
-// THIS IS IN USE - PLEASE DO NOT CHANGE
 export const addToCart = (user, product) => {
   return async dispatch => {
     let addedProduct = product

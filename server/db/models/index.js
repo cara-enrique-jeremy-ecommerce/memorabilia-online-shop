@@ -10,6 +10,7 @@ Category.hasMany(Product)
 
 // Creates a cart model which associates userId's and productId's
 Product.belongsToMany(User, {through: 'cart'})
+// Product.belongsToMany(User, {through: 'wishlist'}) // FOR TESTING
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
