@@ -17,7 +17,6 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     validate: {min: 1, max: 5}
   }
-  //reviews: Sequelize.TEXT
 })
 
 module.exports = Product
