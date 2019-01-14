@@ -33,3 +33,24 @@ router.get('/:userId', async (req, res, next) => {
 //     next(error)
 //   }
 // })
+
+router.get('/', (req, res, next) => {
+  try {
+    res.json(req.session.cart)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', (req, res, next) => {
+  try {
+    if (req.session.cart) {
+      req.session.cart[req.body.id] = req.body
+    } else {
+      req.session.cart = {[req.body.id]: req.body}
+    }
+    res.json(req.session.cart)
+  } catch (error) {
+    next(error)
+  }
+})
