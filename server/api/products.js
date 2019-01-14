@@ -1,8 +1,9 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, Review} = require('../db/models')
 
 module.exports = router
 
+// GET /products --> Getting the list of all the products
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
@@ -15,6 +16,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// GET /products/:productId -- Getting a specific product
 router.get('/:productId', async (req, res, next) => {
   try {
     const singleProduct = await Product.findOne({
@@ -28,6 +30,7 @@ router.get('/:productId', async (req, res, next) => {
   }
 })
 
+// PUT /products/:productId -- Updating a specific product's details
 router.put('/:productId', async (req, res, next) => {
   try {
     await Product.update(req.body, {
@@ -43,6 +46,7 @@ router.put('/:productId', async (req, res, next) => {
   }
 })
 
+// POST /products/:productId -- Creating a new product
 router.post('/', async (req, res, next) => {
   try {
     const newProduct = await Product.create(req.body, {
@@ -58,5 +62,40 @@ router.post('/', async (req, res, next) => {
     res.json(newProductWithCategoryDetails)
   } catch (error) {
     next(error)
+  }
+})
+
+// All th reviews related to an specific product
+// GET /products/:productId/reviews
+router.get('/:productId/reviews', async (req, res, next) => {
+  try {
+    const reviews = await Review.findAll({
+      where: {
+        productId: req.params.productId
+      }
+    })
+    res.json(reviews)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// POST /products/:productId/reviews
+router.post('/:productId/reviews', async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.productId)
+
+    if (!product) {
+      res.sendStatus(404)
+    } else {
+      let newreview = await Review.create(req.body, {
+        returning: true
+      })
+      newreview.productId = req.params.productId
+      newreview.userId = req.user.id
+      res.json(newreview)
+    }
+  } catch (err) {
+    next(err)
   }
 })
