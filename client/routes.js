@@ -11,8 +11,9 @@ import {
   AddProductForm,
   Cart
 } from './components'
-import {me} from './store'
 import CategoryList from './components/CategoryList'
+import Profile from './components/Profile'
+import {me} from './store'
 
 /**
  * COMPONENT
@@ -23,7 +24,8 @@ class Routes extends Component {
   }
 
   render() {
-    // const {isLoggedIn} = this.props
+    const {isLoggedIn} = this.props
+    console.log('is logged in', isLoggedIn)
 
     return (
       <Switch>
@@ -37,14 +39,12 @@ class Routes extends Component {
         <Route path="/categories/:categoryId" component={ProductList} />
         <Route path="/products/:productId" component={SingleProductDetail} />
         <Route exact path="/products" component={ProductList} />
-        {/* {isLoggedIn && (
+        {isLoggedIn && (
           <Switch>
-            Routes placed here are only available after logging in
-            <Route path="/home" component={UserHome} />
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/profile" component={Profile} />
           </Switch>
-        )} */}
-        {/* Displays our guesthome component as a fallback */}
-        {/* <Route component={GuestHome} /> */}
+        )}
       </Switch>
     )
   }
