@@ -1,7 +1,15 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Category, Product, Review} = require('../server/db/models')
+const {
+  User,
+  Category,
+  Product,
+  Review,
+  OrderItem,
+  Order,
+  Address
+} = require('../server/db/models')
 
 // ADDED A SMALL PRODUCT SEED TO TEST ROUTES AND MODEL
 // const products = [
@@ -377,6 +385,79 @@ async function seed() {
   await Promise.all(reviews.map(review => Review.create(review)))
 
   console.log(`seeded ${reviews.length} reviews`)
+
+  const addresses = [
+    {
+      street1: '123 Vallejo St.',
+      city: 'NYC',
+      state: 'NY',
+      country: 'USA',
+      zipcode: 12345,
+      userId: 1
+    },
+    {
+      street1: '456 Russo Ave.',
+      city: 'San Francisco',
+      state: 'CA',
+      country: 'USA',
+      zipcode: 45678,
+      userId: 1
+    },
+    {
+      street1: '789 Cesar Ct.',
+      city: 'Los Angeles',
+      state: 'CA',
+      country: 'USA',
+      zipcode: 98765,
+      userId: 2
+    }
+  ]
+
+  await Promise.all(addresses.map(address => Address.create(address)))
+
+  console.log(`seeded ${addresses.length} addresses`)
+
+  const orders = [
+    {
+      status: 'open',
+      userId: 1,
+      addressId: 1
+    },
+    {
+      status: 'completed',
+      userId: 1,
+      addressId: 2
+    }
+  ]
+
+  await Promise.all(orders.map(order => Order.create(order)))
+
+  console.log(`seeded ${orders.length} orders`)
+
+  const orderItems = [
+    {
+      quantity: 2,
+      currentPrice: 49.99,
+      productId: 7,
+      orderId: 1
+    },
+    {
+      quantity: 1,
+      currentPrice: 1000000,
+      productId: 20,
+      orderId: 1
+    },
+    {
+      quantity: 1,
+      currentPrice: 50,
+      productId: 1,
+      orderId: 1
+    }
+  ]
+
+  await Promise.all(orderItems.map(orderitem => OrderItem.create(orderitem)))
+
+  console.log(`seeded ${orderItems.length} order items`)
 
   console.log(`seeded successfully`)
 }
