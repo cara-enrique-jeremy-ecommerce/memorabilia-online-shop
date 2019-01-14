@@ -45,9 +45,9 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   try {
     if (req.session.cart) {
-      req.session.cart = [...req.session.cart, req.body]
+      req.session.cart[req.body.id] = req.body
     } else {
-      req.session.cart = [req.body]
+      req.session.cart = {[req.body.id]: req.body}
     }
     res.json(req.session.cart)
   } catch (error) {

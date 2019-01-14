@@ -43,37 +43,30 @@ export const fetchCart = user => {
 export const addToCart = (user, product, currentCart) => {
   return async dispatch => {
     let addedProduct = product
-    let found = false
-    addedProduct.quantityInOrder = 1
 
-    currentCart.forEach(item => {
-      if (item.id === product.id) {
-        ++item.quantityInOrder
-        found = true
-      }
-    })
-
-    if (found) {
-      dispatch(updateCart(currentCart))
+    if (currentCart[product.id]) {
+      ++addedProduct.quantityInOrder
     } else {
-      dispatch(addProductToCart(addedProduct))
+      addedProduct.quantityInOrder = 1
     }
+
+    dispatch(addProductToCart(addedProduct))
+
+    await axios.post(`/api/cart`, product)
 
     // if (user.id) {
     //   const res = await axios.post(`/api/cart/${user.id}`, product)
     //   addedProduct = res.data
-    // } else {
-    //   await axios.post(`/api/cart`, product)
     // }
   }
 }
 
 // reducer
 
-export default function(state = [], action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
-      return [...state, action.product]
+      return {...state, [action.product.id]: action.product}
     case GET_USER_CART:
       return action.cart
     case UPDATE_CART:
