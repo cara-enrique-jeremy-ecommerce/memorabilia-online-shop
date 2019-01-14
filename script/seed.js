@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Category, Product} = require('../server/db/models')
+const {User, Category, Product, Review} = require('../server/db/models')
 
 // ADDED A SMALL PRODUCT SEED TO TEST ROUTES AND MODEL
 // const products = [
@@ -18,9 +18,27 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'}),
     User.create({
+      firstName: 'Cody',
+      lastName: 'Smith',
+      email: 'cody@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'Murphy',
+      lastName: 'Johnson',
+      email: 'murphy@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'Sarah',
+      lastName: 'Lewis',
+      email: 'cara@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'Admin',
+      lastName: 'Admin',
       email: 'admin@admin.com',
       password: 'admin',
       adminPrivilege: 'true'
@@ -336,6 +354,29 @@ async function seed() {
   await Promise.all(products.map(product => Product.create(product)))
 
   console.log(`seeded ${products.length} products`)
+
+  const reviews = [
+    {
+      reviewText:
+        'These underwear are amazing! They fit so well I feel empowered!',
+      productId: 2,
+      userId: 1
+    },
+    {
+      reviewText: 'I love this mask!',
+      productId: 12,
+      userId: 3
+    },
+    {
+      reviewText: 'Best robot ever!',
+      productId: 29,
+      userId: 2
+    }
+  ]
+
+  await Promise.all(reviews.map(review => Review.create(review)))
+
+  console.log(`seeded ${reviews.length} reviews`)
 
   console.log(`seeded successfully`)
 }

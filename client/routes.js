@@ -5,8 +5,7 @@ import PropTypes from 'prop-types'
 import {
   Login,
   Signup,
-  UserHome,
-  GuestHome,
+  Home,
   ProductList,
   SingleProductDetail,
   AddProductForm,
@@ -24,12 +23,12 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    // const {isLoggedIn} = this.props
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={GuestHome} />
+        <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/cart" component={Cart} />
@@ -38,14 +37,14 @@ class Routes extends Component {
         <Route path="/categories/:categoryId" component={ProductList} />
         <Route path="/products/:productId" component={SingleProductDetail} />
         <Route exact path="/products" component={ProductList} />
-        {isLoggedIn && (
+        {/* {isLoggedIn && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
+            Routes placed here are only available after logging in
             <Route path="/home" component={UserHome} />
           </Switch>
-        )}
+        )} */}
         {/* Displays our guesthome component as a fallback */}
-        <Route component={GuestHome} />
+        {/* <Route component={GuestHome} /> */}
       </Switch>
     )
   }

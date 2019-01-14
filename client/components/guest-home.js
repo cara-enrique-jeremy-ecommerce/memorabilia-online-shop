@@ -1,5 +1,4 @@
 import React from 'react'
-import CategoryList from './CategoryList'
 
 /**
  * COMPONENT
@@ -7,8 +6,8 @@ import CategoryList from './CategoryList'
 export const GuestHome = () => {
   return (
     <div className="container">
-      <h1>Check out our Collections!</h1>
-      <CategoryList />
+      <h1>'Guest' Home view to be GONE</h1>
+      {/* <CategoryList /> */}
     </div>
   )
 }

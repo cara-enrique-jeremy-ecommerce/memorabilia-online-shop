@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {Order, Address} = require('../db/models')
 
+// GET /orders -- History?
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
@@ -12,6 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// GET /orders/:orderId
 router.get('/:orderId', async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.orderId)

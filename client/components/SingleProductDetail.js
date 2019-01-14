@@ -31,7 +31,7 @@ class SingleProductDetail extends Component {
                 <i className="fa fa-star-o" aria-hidden="true" />
                 <i className="fa fa-star-o" aria-hidden="true" />
               </p>
-              <p className="inventory">Only ${quantity} left!</p>
+              <p className="inventory">Only {quantity} left!</p>
               <div className="main-info">
                 {price && (
                   <p className="price">
