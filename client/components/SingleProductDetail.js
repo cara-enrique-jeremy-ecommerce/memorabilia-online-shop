@@ -41,7 +41,9 @@ class SingleProductDetail extends Component {
                 {/* <Link to="/"> */}
                 <p
                   className="add-to-cart-btn"
-                  onClick={() => this.props.addToCart(user, product)}
+                  onClick={() =>
+                    this.props.addToCart(user, product, this.props.cart)
+                  }
                 >
                   Add to Cart!
                 </p>
@@ -70,12 +72,14 @@ class SingleProductDetail extends Component {
 
 const mapStateToProps = state => ({
   product: state.singleProduct,
-  user: state.user
+  user: state.user,
+  cart: state.cart
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-  addToCart: (user, product) => dispatch(addToCart(user, product))
+  addToCart: (user, product, currentCart) =>
+    dispatch(addToCart(user, product, currentCart))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProductDetail)

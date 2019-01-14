@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_USER_CART = 'GET_USER_CART'
+const UPDATE_CART = 'UPDATE_CART'
 
 // action creators
 
@@ -11,6 +12,13 @@ const addProductToCart = product => {
   return {
     type: ADD_PRODUCT_TO_CART,
     product
+  }
+}
+
+const updateCart = cart => {
+  return {
+    type: UPDATE_CART,
+    cart
   }
 }
 
@@ -32,26 +40,36 @@ export const fetchCart = user => {
   }
 }
 
-export const addToCart = (user, product) => {
+export const addToCart = (user, product, currentCart) => {
   return async dispatch => {
     let addedProduct = product
-    console.log('addedProduct1: ', addedProduct)
-    if (user.id) {
-      const res = await axios.post(`/cart/${user.id}`, product)
-      addedProduct = res.data
+
+    if (currentCart[product.id]) {
+      ++addedProduct.quantityInOrder
+    } else {
+      addedProduct.quantityInOrder = 1
     }
-    console.log('addedProduct2: ', addedProduct)
+
     dispatch(addProductToCart(addedProduct))
+
+    await axios.post(`/api/cart`, product)
+
+    // if (user.id) {
+    //   const res = await axios.post(`/api/cart/${user.id}`, product)
+    //   addedProduct = res.data
+    // }
   }
 }
 
 // reducer
 
-export default function(state = [], action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
-      return [...state, action.product]
+      return {...state, [action.product.id]: action.product}
     case GET_USER_CART:
+      return action.cart
+    case UPDATE_CART:
       return action.cart
     default:
       return state
