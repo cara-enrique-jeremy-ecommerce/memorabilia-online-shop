@@ -32,14 +32,16 @@ export const fetchCart = user => {
   }
 }
 
-export const addToCart = (user, product) => {
+export const addToCart = (user, product, currentCart) => {
   return async dispatch => {
     let addedProduct = product
     if (user.id) {
-      const res = await axios.post(`/cart/${user.id}`, product)
+      const res = await axios.post(`/api/cart/${user.id}`, product)
       addedProduct = res.data
+    } else {
+      await axios.post(`/api/cart`, product)
+      dispatch(addProductToCart(addedProduct))
     }
-    dispatch(addProductToCart(addedProduct))
   }
 }
 
