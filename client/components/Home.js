@@ -7,12 +7,12 @@ import {Link} from 'react-router-dom'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
+export const Home = props => {
   const {email, adminPrivilege} = props
 
   return (
     <div className="container">
-      <h3 className="welcomeuser">Welcome, {email}</h3>
+      {email && <h3 className="welcomeuser">Welcome, {email}</h3>}
       {adminPrivilege && (
         <div className="btn-right">
           <Link to="/add-product">
@@ -36,11 +36,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(Home)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+Home.propTypes = {
   email: PropTypes.string
 }

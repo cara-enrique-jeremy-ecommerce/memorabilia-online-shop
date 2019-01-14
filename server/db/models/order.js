@@ -12,8 +12,8 @@ const Order = db.define(
         'open',
         'completed',
         'pending',
-        'confirmed',
-        'shipped'
+        'shipped',
+        'delivered'
       ),
       defaultValue: 'open'
     },

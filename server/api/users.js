@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order} = require('../db/models')
+const {User, Order, Address} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -16,6 +16,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// GET api/:userId/orders  --> History of past orders
 router.get('/:userId/orders', async (req, res, next) => {
   try {
     const userId = req.params.userId
@@ -28,6 +29,20 @@ router.get('/:userId/orders', async (req, res, next) => {
     } else {
       next(new Error('Authorization error'))
     }
+  } catch (err) {
+    next(err)
+  }
+})
+
+// GET api/:userId/addresses
+router.get('/:userId/addresses', async (req, res, next) => {
+  try {
+    const addresses = await Address.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    res.json(addresses)
   } catch (err) {
     next(err)
   }
