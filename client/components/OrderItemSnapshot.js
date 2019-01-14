@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const OrderItemSnapshot = props => {
   const {handleRemove, userId} = props
-  const {id, name, price, image, description} = props.orderItem
+  const {id, name, price, image, description, quantityInOrder} = props.orderItem
 
   // <Link to={`products/${id}`}></Link>
   // {/* <h2>{product.orderItem.quantity}</h2> */}
@@ -18,6 +18,7 @@ const OrderItemSnapshot = props => {
         <p>Description</p>
         <p>{description}</p>
         <p>Price: {price}</p>
+        <p>Quantity: {quantityInOrder}</p>
         <button type="button" onClick={() => handleRemove(id, userId)}>
           <i className="fa fa-trash-o" aria-hidden="true" />
         </button>

@@ -43,14 +43,22 @@ class Cart extends Component {
       this.setState({gotCart: true})
     }
     console.log('cart length? ', this.props.cart, this.state.gotCart)
+
+    const cart = []
+    for (let key in this.props.cart) {
+      if (this.props.cart.hasOwnProperty(key)) {
+        cart.push(this.props.cart[key])
+      }
+    }
+    console.log(cart)
     return (
       <div>
-        {this.props.cart.length ? (
+        {cart.length ? (
           <div className="cart container">
             <h1>CART</h1>
             <div className="orderitems">
               <ul>
-                {this.props.cart.map(orderItem => {
+                {cart.map(orderItem => {
                   return (
                     <OrderItemSnapshot
                       handleRemove={this.handleRemove}
