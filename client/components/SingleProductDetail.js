@@ -42,7 +42,7 @@ class SingleProductDetail extends Component {
                 <p
                   className="add-to-cart-btn"
                   onClick={() =>
-                    this.props.addToCart(user, product, currentCart)
+                    this.props.addToCart(user, product, this.props.cart)
                   }
                 >
                   Add to Cart!
