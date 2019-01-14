@@ -56,6 +56,15 @@ export const fetchProductsInCart = userId => async dispatch => {
   }
 }
 
+export const deleteProductInCart = (productId, userId) => async dispatch => {
+  try {
+    await axios.delete(`/api/orders/removeFromCart?productId=${productId}`)
+    dispatch(fetchProductsInCart(userId))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 // reducer
 
 export default function(state = initialState, action) {
