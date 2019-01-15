@@ -12,8 +12,13 @@ class Cart extends Component {
   }
 
   render() {
-    const {cart} = this.props
-
+    const cart = []
+    for (let key in this.props.cart) {
+      if (this.props.cart.hasOwnProperty(key)) {
+        cart.push(this.props.cart[key])
+      }
+    }
+    console.log('cart: ', cart)
     let total = 0
 
     return (
@@ -29,8 +34,8 @@ class Cart extends Component {
                     <OrderItemSnapshot
                       handleRemove={this.handleRemove}
                       key={orderItem.id}
-                      orderItem={orderItem.product}
-                      quantity={orderItem.quantity}
+                      orderItem={orderItem}
+                      quantity={orderItem.quantityInOrder}
                       userId={this.props.user.id}
                     />
                   )
