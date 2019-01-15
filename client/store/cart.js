@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {ProductList} from '../components'
 
 // ACTION TYPES
 
@@ -21,30 +22,37 @@ const addProductToCart = product => ({
 
 export const fetchCart = userId => {
   return async dispatch => {
-    const res = await axios.get(`/api/users/${userId}/cart`)
-    const {data: cart} = res
-    const objectCart = {}
-    cart.forEach(item => {
-      objectCart[item.productId] = item.product
-      objectCart[item.productId].quantityInOrder = item.quantity
-    })
-    dispatch(gotUserCart(objectCart))
+    if (userId) {
+      const res = await axios.get(`/api/users/${userId}/cart`)
+      const {data: cart} = res
+      const objectCart = {}
+      cart.forEach(item => {
+        objectCart[item.productId] = item.product
+        objectCart[item.productId].quantityInOrder = item.quantity
+      })
+      dispatch(gotUserCart(objectCart))
+    } else {
+      const res = await axios.get('/api/cart')
+      const {data: cart} = res
+      dispatch(gotUserCart(cart))
+    }
   }
 }
 
 export const addToCart = (user, product, currentCart) => {
   return async dispatch => {
-    let addedProduct = product
+    const addedProduct = Object.assign({}, product)
     if (currentCart[product.id]) {
-      ++addedProduct.quantityInOrder
+      addedProduct.quantityInOrder = currentCart[product.id].quantityInOrder + 1
     } else {
       addedProduct.quantityInOrder = 1
     }
-
     dispatch(addProductToCart(addedProduct))
 
     if (!user.id) {
       await axios.post(`/api/cart`, addedProduct)
+    } else {
+      await axios.post(`/api/users/${user.id}/cart`, addedProduct)
     }
   }
 }
