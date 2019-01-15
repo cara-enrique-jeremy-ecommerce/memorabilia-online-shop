@@ -66,7 +66,7 @@ export default function(state = {}, action) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return {}
     default:
       return state
   }
