@@ -1,19 +1,22 @@
 import axios from 'axios'
 
-// action types
+// ACTION TYPES
 
-const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_USER_CART = 'GET_USER_CART'
+const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const UPDATE_CART = 'UPDATE_CART'
 
-// action creators
+// ACTION CREATORS
 
-const addProductToCart = product => {
-  return {
-    type: ADD_PRODUCT_TO_CART,
-    product
-  }
-}
+const gotUserCart = cart => ({
+  type: GET_USER_CART,
+  cart
+})
+
+const addProductToCart = product => ({
+  type: ADD_PRODUCT_TO_CART,
+  product
+})
 
 // const updateCart = cart => {
 //   return {
@@ -22,25 +25,19 @@ const addProductToCart = product => {
 //   }
 // }
 
-const gotUserCart = cart => {
-  return {
-    type: GET_USER_CART,
-    cart
-  }
-}
+// THUNK CREATORS
 
-// thunk creators
-
-export const fetchCart = user => {
+export const fetchCart = userId => {
   return async dispatch => {
-    const res = await axios.get(`/api/users/${user.id}/cart`)
+    const res = await axios.get(`/api/users/${userId}/cart`)
     const {data: cart} = res
-    const objectCart = {}
+    let newcart = []
     cart.forEach(item => {
-      objectCart[item.productId] = item.product
-      objectCart[item.productId].quantityInOrder = item.quantity
+      item.quantityInOrder = item.quantity
+      newcart.push(item)
     })
-    dispatch(gotUserCart(objectCart))
+
+    dispatch(gotUserCart(newcart))
   }
 }
 
@@ -69,12 +66,12 @@ export const addToCart = (user, product, currentCart) => {
 
 // reducer
 
-export default function(state = {}, action) {
+export default function(state = [], action) {
   switch (action.type) {
-    case ADD_PRODUCT_TO_CART:
-      return {...state, [action.product.id]: action.product}
     case GET_USER_CART:
       return action.cart
+    case ADD_PRODUCT_TO_CART:
+      return {...state, [action.product.id]: action.product}
     // case UPDATE_CART:
     //   return action.cart
     default:

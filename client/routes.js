@@ -13,19 +13,18 @@ import {
 } from './components'
 import CategoryList from './components/CategoryList'
 import Profile from './components/Profile'
-import {me} from './store'
+// import {me} from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
-  }
+  // componentDidMount() {
+  //   this.props.loadInitialData()
+  // }
 
   render() {
     const {isLoggedIn} = this.props
-    console.log('is logged in', isLoggedIn)
 
     return (
       <Switch>
@@ -61,22 +60,22 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    loadInitialData() {
-      dispatch(me())
-    }
-  }
-}
+// const mapDispatch = dispatch => {
+//   return {
+//     loadInitialData() {
+//       dispatch(me())
+//     }
+//   }
+// }
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes))
+export default withRouter(connect(mapState)(Routes))
 
 /**
  * PROP TYPES
  */
 Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired,
+  // loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

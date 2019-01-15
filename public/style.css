@@ -245,17 +245,16 @@ nav a:hover {
   color: #f4cf7d;
 }
 ul {
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   list-style-type: none;
   margin: 0;
   padding: 0;
   top: 45px;
   right: 0px;
   width: 200px;
-  background-color: white;
   font-weight: bold;
   position: absolute;
-  /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
-  border: 1px solid red;
   z-index: 1;
 }
 li {
@@ -414,17 +413,18 @@ li:hover {
 }
 
 .add-to-cart-btn {
-  border-radius: 0.2em;
-  color: #fff;
-  margin: 0;
-  display: flex;
-  justify-content: center;
   align-items: center;
   background-color: #f50;
   border: 1px solid #f50;
-  width: 170px;
-  height: 40px;
+  border-radius: 0.2em;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
   font-size: 1.5em;
+  height: 40px;
+  justify-content: center;
+  margin: 0;
+  width: 170px;
 }
 
 .add-to-cart-btn:hover {
@@ -449,44 +449,75 @@ li:hover {
 
 .cart {
   width: 60%;
+  margin: 0 auto;
 }
 
 .orderitems {
-  background-color: green;
-}
-
-.orderitems ul {
-  top: inherit;
-  right: inherit;
-  width: 60%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 
-.orderitems ul li {
-  background-color: #ddd;
-  margin: 20px;
+.orderitems ul {
+  top: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  box-shadow: none;
+  font-weight: 400;
+}
+
+.orderitems ul li {
+  background-color: #fff;
+  box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.45);
+  display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.orderitems ul li:hover {
+  color: #000;
+  background-color: #fff;
 }
 
 .order-item-img {
-  height: 200px;
+  height: 120px;
   width: auto;
+  margin: 0 auto;
 }
 
 .fa.fa-trash-o {
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 .orderdetails-left {
+  width: 30%;
   display: flex;
   text-align: center;
   align-items: center;
 }
 
 .orderdetails-right {
+  width: 70%;
   text-align: left;
+  padding: 10px 20px 10px 0;
+}
+
+.orderdetails-right .right-down {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.remove-btn {
+  border: none;
+  color: #e13b3a;
+}
+
+.cart .add-to-cart-btn {
+  margin: 0 auto;
 }
