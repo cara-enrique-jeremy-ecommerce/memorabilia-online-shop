@@ -26,7 +26,6 @@ class Cart extends Component {
         {cart.length ? (
           <div className="cart">
             <h1>SHOPPING CART</h1>
-            <hr />
             <div className="orderitems">
               <ul>
                 {cart.map(orderItem => {

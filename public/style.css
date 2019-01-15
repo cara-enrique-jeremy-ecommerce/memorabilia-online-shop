@@ -169,6 +169,17 @@ nav a:hover {
   color: #f4cf7d;
 }
 
+.shopping-cart a {
+  display: flex;
+  flex-direction: row;
+}
+
+a.shopping-cart span {
+  display: inline-block;
+  font-size: 0.7em;
+  transform: translateX(3px) translateY(6px);
+}
+
 /******************************/
 /******** PRODUCTS NAV ********/
 /******************************/
