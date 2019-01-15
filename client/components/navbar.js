@@ -3,17 +3,10 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {fetchCart} from '../store/cart'
 
 class Navbar extends React.Component {
-  componentDidUpdate() {
-    if (this.props.user.id) {
-      this.props.fetchCart(this.props.user.id)
-    }
-  }
-
   render() {
-    const {handleClick, isLoggedIn, user} = this.props
+    const {handleClick, isLoggedIn, user, cart} = this.props
     return (
       <div className="navbar">
         <Link to="/">
@@ -33,7 +26,7 @@ class Navbar extends React.Component {
               </Link>
               <Link to="/cart">
                 <i className="fa fa-shopping-cart" />
-                <p>{user.cart}</p>
+                {cart && <p>{cart.length}</p>}
               </Link>
             </div>
           ) : (
@@ -57,12 +50,12 @@ class Navbar extends React.Component {
  */
 const mapState = state => ({
   isLoggedIn: !!state.user.id,
-  user: state.user
+  user: state.user,
+  cart: state.cart
 })
 
 const mapDispatch = dispatch => ({
-  handleClick: () => dispatch(logout()),
-  fetchCart: userId => dispatch(fetchCart(userId))
+  handleClick: () => dispatch(logout())
 })
 
 export default connect(mapState, mapDispatch)(Navbar)
