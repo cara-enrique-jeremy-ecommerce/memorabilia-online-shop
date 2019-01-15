@@ -51,6 +51,8 @@ export const addToCart = (user, product, currentCart) => {
 
     if (!user.id) {
       await axios.post(`/api/cart`, addedProduct)
+    } else {
+      await axios.post(`/api/users/${user.id}/cart`, addedProduct)
     }
   }
 }
