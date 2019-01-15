@@ -15,7 +15,7 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const {handleClick, isLoggedIn, cart} = this.props
+    const {handleClick, isLoggedIn, user, cart} = this.props
     return (
       <div className="navbar">
         <Link to="/">

@@ -14,11 +14,13 @@ router.get('/', (req, res, next) => {
 // Creating a cart property for a guest in req.session
 router.post('/', (req, res, next) => {
   try {
-    if (req.session.cart) {
-      req.session.cart[req.body.id] = req.body
-    } else {
-      req.session.cart = {[req.body.id]: req.body}
-    }
+    req.session.cart = []
+    req.session.cart = req.body
+    // if (req.session.cart) {
+    //   req.session.cart = req.body
+    // } else {
+    //   req.session.cart = {[req.body.id]: req.body}
+    // }
     res.json(req.session.cart)
   } catch (error) {
     next(error)

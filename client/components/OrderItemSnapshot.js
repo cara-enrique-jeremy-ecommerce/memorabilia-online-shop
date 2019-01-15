@@ -2,8 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 const OrderItemSnapshot = props => {
-  const {handleRemove, userId} = props
-  const {id, name, price, image, description, quantityInOrder} = props.orderItem
+  const {handleRemove, userId, quantity} = props
+  const {id, name, price, image, description} = props.orderItem
 
   // <Link to={`products/${id}`}></Link>
   // {/* <h2>{product.orderItem.quantity}</h2> */}
@@ -19,7 +19,7 @@ const OrderItemSnapshot = props => {
         <div className="right-down">
           <div className="right-down-left">
             <p>Price: {price}</p>
-            <p>Quantity: {quantityInOrder}</p>
+            <p>Quantity: {quantity}</p>
           </div>
           <button
             className="remove-btn"

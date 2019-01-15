@@ -39,11 +39,11 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  if (req.session.passport) {
-    res.json(req.user)
-  } else {
-    res.json(req.session.id)
-  }
+  // if (req.session.passport) {
+  res.json(req.user)
+  // } else {
+  //   res.json(req.session.id)
+  // }
 })
 
 router.use('/google', require('./google'))
