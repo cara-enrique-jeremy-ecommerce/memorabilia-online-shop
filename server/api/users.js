@@ -16,6 +16,21 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// GET /api/users/:userId/cart --> Retrieve authenticated user's cart
+router.get('/:userId/cart', async (req, res, next) => {
+  try {
+    const cartOrder = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        status: 'open'
+      }
+    })
+    res.json(cartOrder.orderitems)
+  } catch (error) {
+    next(error)
+  }
+})
+
 // GET api/:userId/orders  --> History of past orders
 router.get('/:userId/orders', async (req, res, next) => {
   try {

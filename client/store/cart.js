@@ -15,12 +15,12 @@ const addProductToCart = product => {
   }
 }
 
-const updateCart = cart => {
-  return {
-    type: UPDATE_CART,
-    cart
-  }
-}
+// const updateCart = cart => {
+//   return {
+//     type: UPDATE_CART,
+//     cart
+//   }
+// }
 
 const gotUserCart = cart => {
   return {
@@ -34,9 +34,14 @@ const gotUserCart = cart => {
 // NOT YET USED - CURRENTLY WORKING ON STORING AND RETRIEVING USER CARTS
 export const fetchCart = user => {
   return async dispatch => {
-    const res = await axios.get(`/cart/${user.id}`)
+    const res = await axios.get(`/api/users/${user.id}/cart`)
     const {data: cart} = res
-    dispatch(gotUserCart(cart))
+    const objectCart = {}
+    cart.forEach(item => {
+      objectCart[item.productId] = item.product
+      objectCart[item.productId].quantityInOrder = item.quantity
+    })
+    dispatch(gotUserCart(objectCart))
   }
 }
 
@@ -52,7 +57,9 @@ export const addToCart = (user, product, currentCart) => {
 
     dispatch(addProductToCart(addedProduct))
 
-    await axios.post(`/api/cart`, product)
+    if (!user.id) {
+      await axios.post(`/api/cart`, addedProduct)
+    }
 
     // if (user.id) {
     //   const res = await axios.post(`/api/cart/${user.id}`, product)
@@ -69,8 +76,8 @@ export default function(state = {}, action) {
       return {...state, [action.product.id]: action.product}
     case GET_USER_CART:
       return action.cart
-    case UPDATE_CART:
-      return action.cart
+    // case UPDATE_CART:
+    //   return action.cart
     default:
       return state
   }

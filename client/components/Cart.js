@@ -1,29 +1,32 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {me} from '../store/user'
-import {fetchProductsInCart, deleteProductInCart} from '../store/products'
+// import {me} from '../store/user'
+// import {fetchProductsInCart, deleteProductInCart} from '../store/products'
 import OrderItemSnapshot from './OrderItemSnapshot'
 import {Link} from 'react-router-dom'
+import {fetchCart} from '../store/cart'
 
 class Cart extends Component {
-  constructor() {
-    super()
-    this.state = {
-      gotCart: false
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     gotCart: false
+  //   }
+  // }
+  componentDidMount() {
+    if (this.props.user.id) {
+      this.props.fetchCart(this.props.user)
     }
-  }
-  async componentDidMount() {
-    await this.props.getUser()
   }
 
   async handleRemove(productId, userId) {
     await this.props.deleteProductThunk(productId, userId)
   }
 
-  getCart = async userId => {
-    console.log('getting cart?')
-    await this.props.getCartThunk(userId)
-  }
+  // getCart = async userId => {
+  //   console.log('getting cart?')
+  //   await this.props.getCartThunk(userId)
+  // }
   calcTotal = objects => {
     let total = 0
     objects.forEach(object => {
@@ -36,13 +39,13 @@ class Cart extends Component {
   //   : 'Total:   $ 0.00'}
 
   render() {
-    console.log('checking ', this.props)
-    if (this.props.user.id && !this.state.gotCart) {
-      console.log('printing? ')
-      this.getCart(this.props.user.id)
-      this.setState({gotCart: true})
-    }
-    console.log('cart length? ', this.props.cart, this.state.gotCart)
+    // console.log('checking ', this.props)
+    // if (this.props.user.id && !this.state.gotCart) {
+    //   console.log('printing? ')
+    //   this.getCart(this.props.user.id)
+    //   this.setState({gotCart: true})
+    // }
+    // console.log('cart length? ', this.props.cart, this.state.gotCart)
 
     const cart = []
     for (let key in this.props.cart) {
@@ -70,7 +73,8 @@ class Cart extends Component {
                 })}
               </ul>
             </div>
-            <p>Total price to be coded...</p>
+            <p>Total price to be coded...</p>{' '}
+            {/* Bug: Price and Checkout do not display due to CSS */}
             <Link to="/checkout">
               <p>Checkout!</p>
             </Link>
@@ -90,14 +94,17 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getCartThunk: userId => {
-    dispatch(fetchProductsInCart(userId))
-  },
-  deleteProductThunk: (productId, userId) => {
-    dispatch(deleteProductInCart(productId, userId))
-  },
-  getUser: () => {
-    dispatch(me)
+  // getCartThunk: userId => {
+  //   dispatch(fetchProductsInCart(userId))
+  // },
+  // deleteProductThunk: (productId, userId) => {
+  //   dispatch(deleteProductInCart(productId, userId))
+  // },
+  // getUser: () => {
+  //   dispatch(me)
+  // },
+  fetchCart: user => {
+    dispatch(fetchCart(user))
   }
 })
 
