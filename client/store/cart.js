@@ -4,7 +4,6 @@ import axios from 'axios'
 
 const GET_USER_CART = 'GET_USER_CART'
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
-const UPDATE_CART = 'UPDATE_CART'
 
 // ACTION CREATORS
 
@@ -18,25 +17,12 @@ const addProductToCart = newCart => ({
   newCart
 })
 
-// const updateCart = cart => {
-//   return {
-//     type: UPDATE_CART,
-//     cart
-//   }
-// }
-
 // THUNK CREATORS
 
 export const fetchCart = userId => {
   return async dispatch => {
     const res = await axios.get(`/api/users/${userId}/cart`)
     const {data: cart} = res
-    // let newcart = []
-    // cart.forEach(item => {
-    //   item.quantityInOrder = item.quantity
-    //   newcart.push(item)
-    // })
-
     dispatch(gotUserCart(cart))
   }
 }
@@ -73,11 +59,6 @@ export const addToCart = (user, product, currentCart) => {
     })
 
     console.log(newCart)
-    // if (currentCart[product.id]) {
-    //   ++addedProduct.quantityInOrder
-    // } else {
-    //   addedProduct.quantityInOrder = 1
-    // }
 
     dispatch(addProductToCart(newCart))
 
@@ -100,8 +81,6 @@ export default function(state = [], action) {
       return action.cart
     case ADD_PRODUCT_TO_CART:
       return action.newCart
-    // case UPDATE_CART:
-    //   return action.cart
     default:
       return state
   }
