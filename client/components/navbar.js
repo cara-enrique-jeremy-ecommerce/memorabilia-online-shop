@@ -2,9 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {logout, me} from '../store'
+import {fetchCart} from '../store/cart'
 
 class Navbar extends React.Component {
+  async componentDidMount() {
+    await this.props.loadInitialData()
+
+    if (this.props.user.id) {
+      this.props.fetchCart(this.props.user.id)
+    }
+  }
+
   render() {
     const {handleClick, isLoggedIn, user, cart} = this.props
     return (
@@ -55,7 +64,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  handleClick: () => dispatch(logout())
+  loadInitialData: () => dispatch(me()),
+  handleClick: () => dispatch(logout()),
+  fetchCart: userId => dispatch(fetchCart(userId))
 })
 
 export default connect(mapState, mapDispatch)(Navbar)
@@ -64,6 +75,7 @@ export default connect(mapState, mapDispatch)(Navbar)
  * PROP TYPES
  */
 Navbar.propTypes = {
+  loadInitialData: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
