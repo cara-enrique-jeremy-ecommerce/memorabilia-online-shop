@@ -40,6 +40,7 @@ router.get('/', (req, res, next) => {
   }
 })
 
+// Creating a cart property for a guest in req.session
 router.post('/', (req, res, next) => {
   try {
     if (req.session.cart) {

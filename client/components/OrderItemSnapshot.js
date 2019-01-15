@@ -15,13 +15,20 @@ const OrderItemSnapshot = props => {
       </div>
       <div className="orderdetails-right">
         <h2>{name}</h2>
-        <p>Description</p>
         <p>{description}</p>
-        <p>Price: {price}</p>
-        <p>Quantity: {quantityInOrder}</p>
-        <button type="button" onClick={() => handleRemove(id, userId)}>
-          <i className="fa fa-trash-o" aria-hidden="true" />
-        </button>
+        <div className="right-down">
+          <div className="right-down-left">
+            <p>Price: {price}</p>
+            <p>Quantity: {quantityInOrder}</p>
+          </div>
+          <button
+            className="remove-btn"
+            type="button"
+            onClick={() => handleRemove(id, userId)}
+          >
+            <i className="fa fa-trash-o" aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </li>
   )
