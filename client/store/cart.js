@@ -12,9 +12,9 @@ const gotUserCart = cart => ({
   cart
 })
 
-const addProductToCart = newCart => ({
+const addProductToCart = product => ({
   type: ADD_PRODUCT_TO_CART,
-  newCart
+  product
 })
 
 // THUNK CREATORS
@@ -23,64 +23,86 @@ export const fetchCart = userId => {
   return async dispatch => {
     const res = await axios.get(`/api/users/${userId}/cart`)
     const {data: cart} = res
-    dispatch(gotUserCart(cart))
+    const objectCart = {}
+    cart.forEach(item => {
+      objectCart[item.productId] = item.product
+      objectCart[item.productId].quantityInOrder = item.quantity
+    })
+    dispatch(gotUserCart(objectCart))
   }
 }
 
 export const addToCart = (user, product, currentCart) => {
   return async dispatch => {
-    let found = false
-    let copyCurrentCart = currentCart.slice()
-
-    copyCurrentCart.forEach(item => {
-      if (item.id === product.id) {
-        found = true
-        ++item.quantityInOrder
-      }
-    })
-
-    if (!found) {
-      product.quantityInOrder = 1
-      copyCurrentCart.push(product)
+    let addedProduct = product
+    if (currentCart[product.id]) {
+      ++addedProduct.quantityInOrder
+    } else {
+      addedProduct.quantityInOrder = 1
     }
 
-    const newCart = copyCurrentCart.map(item => {
-      const newItem = {}
-      console.log('item:  ', item)
-      newItem.id = item.id
-      if (item.product) {
-        newItem.product = item.product
-        newItem.quantity = item.quantity
-      } else {
-        newItem.product = item
-        newItem.quantity = item.quantityInOrder
-      }
-      return newItem
-    })
-
-    console.log(newCart)
-
-    dispatch(addProductToCart(newCart))
+    dispatch(addProductToCart(addedProduct))
 
     if (!user.id) {
-      await axios.post(`/api/cart`, newCart)
+      await axios.post(`/api/cart`, addedProduct)
     }
-
-    // if (user.id) {
-    //   const res = await axios.post(`/api/cart/${user.id}`, product)
-    //   addedProduct = res.data
-    // }
   }
 }
 
+// export const addToCart = (user, product, currentCart) => {
+//   return async dispatch => {
+//     let found = false
+//     let copyCurrentCart = currentCart.slice()
+
+//     copyCurrentCart.forEach(item => {
+//       if (item.id === product.id) {
+//         found = true
+//         ++item.quantity
+//       }
+//     })
+
+//     if (!found) {
+//       product.quantityInOrder = 1
+//       copyCurrentCart.push(product)
+//     }
+
+//     const newCart = copyCurrentCart.map(item => {
+//       const newItem = {}
+
+//       newItem.id = item.id
+//       if (item.product) {
+//         newItem.product = item.product
+//         newItem.quantity = item.quantity
+//       } else {
+//         newItem.product = item
+//         newItem.quantity = item.quantityInOrder
+//       }
+//       return newItem
+//     })
+
+//     console.log('new cart for req.session: ', newCart)
+
+//     dispatch(addProductToCart(newCart))
+
+//     if (!user.id) {
+//       await axios.post(`/api/cart`, newCart)
+//     }
+
+//     // if (user.id) {
+//     //   const res = await axios.post(`/api/cart/${user.id}`, product)
+//     //   addedProduct = res.data
+//     // }
+//   }
+// }
+
 // reducer
 
-export default function(state = [], action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case GET_USER_CART:
       return action.cart
     case ADD_PRODUCT_TO_CART:
-      return action.newCart
+      return {...state, [action.product.id]: action.product}
     default:
       return state
   }
