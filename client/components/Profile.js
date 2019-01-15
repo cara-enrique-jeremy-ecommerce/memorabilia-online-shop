@@ -1,10 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
+import CompletedOrders from './CompletedOrders'
+import {fetchCompletedOrders} from '../store/orders'
 
 class Profile extends React.Component {
+  componentDidMount() {
+    this.props.fetchCompletedOrders(this.props.user.id)
+  }
+
   render() {
     const {firstName, lastName, email, id} = this.props.user
+    console.log(this.props)
 
     return (
       <div className="container">
@@ -17,15 +25,24 @@ class Profile extends React.Component {
         <p>Email: {email}</p>
         <h2>Your Addresses</h2>
         <p>Fetch addresses here...</p>
-        <h2>Your Completed Orders</h2>
-        <p>Fetch history of orders here...</p>
+        <h2>Order History</h2>
+        <CompletedOrders orders={this.props.orders} />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  orders: state.orders
 })
 
-export default connect(mapStateToProps)(Profile)
+const mapDispatchToProps = dispatch => ({
+  fetchCompletedOrders: id => dispatch(fetchCompletedOrders(id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+
+Profile.propTypes = {
+  fetchCompletedOrders: PropTypes.func.isRequired
+}

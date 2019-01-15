@@ -427,6 +427,11 @@ async function seed() {
       status: 'completed',
       userId: 1,
       addressId: 2
+    },
+    {
+      status: 'completed',
+      userId: 1,
+      addressId: 1
     }
   ]
 
@@ -451,7 +456,25 @@ async function seed() {
       quantity: 1,
       currentPrice: 50,
       productId: 1,
-      orderId: 1
+      orderId: 2
+    },
+    {
+      quantity: 2,
+      currentPrice: 250,
+      productId: 20,
+      orderId: 2
+    },
+    {
+      quantity: 1,
+      currentPrice: 199,
+      productId: 29,
+      orderId: 3
+    },
+    {
+      quantity: 3,
+      currentPrice: 69,
+      productId: 26,
+      orderId: 3
     }
   ]
 

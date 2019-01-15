@@ -33,9 +33,9 @@ class Navbar extends React.Component {
               <Link to="/profile">
                 <i className="fa fa-user-circle-o" />
               </Link>
-              <Link to="/cart">
+              <Link className="shopping-cart" to="/cart">
                 <i className="fa fa-shopping-cart" />
-                {cart && <p>{cart.length}</p>}
+                {cart && <span>{cart.length}</span>}
               </Link>
             </div>
           ) : (
@@ -43,9 +43,9 @@ class Navbar extends React.Component {
               {/* The navbar will show these links before you log in */}
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
-              <Link to="/cart">
+              <Link className="shopping-cart" to="/cart">
                 <i className="fa fa-shopping-cart" />
-                <p>0</p>
+                <span>0</span>
               </Link>
             </div>
           )}
@@ -77,5 +77,6 @@ export default connect(mapState, mapDispatch)(Navbar)
 Navbar.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  fetchCart: PropTypes.func.isRequired
 }
