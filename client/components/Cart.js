@@ -30,6 +30,7 @@ class Cart extends Component {
                       handleRemove={this.handleRemove}
                       key={orderItem.id}
                       orderItem={orderItem.product}
+                      quantity={orderItem.quantity}
                       userId={this.props.user.id}
                     />
                   )

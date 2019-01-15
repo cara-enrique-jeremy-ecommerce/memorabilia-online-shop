@@ -13,9 +13,9 @@ const gotUserCart = cart => ({
   cart
 })
 
-const addProductToCart = product => ({
+const addProductToCart = newCart => ({
   type: ADD_PRODUCT_TO_CART,
-  product
+  newCart
 })
 
 // const updateCart = cart => {
@@ -31,30 +31,58 @@ export const fetchCart = userId => {
   return async dispatch => {
     const res = await axios.get(`/api/users/${userId}/cart`)
     const {data: cart} = res
-    let newcart = []
-    cart.forEach(item => {
-      item.quantityInOrder = item.quantity
-      newcart.push(item)
-    })
+    // let newcart = []
+    // cart.forEach(item => {
+    //   item.quantityInOrder = item.quantity
+    //   newcart.push(item)
+    // })
 
-    dispatch(gotUserCart(newcart))
+    dispatch(gotUserCart(cart))
   }
 }
 
 export const addToCart = (user, product, currentCart) => {
   return async dispatch => {
-    let addedProduct = product
+    let found = false
+    let copyCurrentCart = currentCart.slice()
 
-    if (currentCart[product.id]) {
-      ++addedProduct.quantityInOrder
-    } else {
-      addedProduct.quantityInOrder = 1
+    copyCurrentCart.forEach(item => {
+      if (item.id === product.id) {
+        found = true
+        ++item.quantityInOrder
+      }
+    })
+
+    if (!found) {
+      product.quantityInOrder = 1
+      copyCurrentCart.push(product)
     }
 
-    dispatch(addProductToCart(addedProduct))
+    const newCart = copyCurrentCart.map(item => {
+      const newItem = {}
+      console.log('item:  ', item)
+      newItem.id = item.id
+      if (item.product) {
+        newItem.product = item.product
+        newItem.quantity = item.quantity
+      } else {
+        newItem.product = item
+        newItem.quantity = item.quantityInOrder
+      }
+      return newItem
+    })
+
+    console.log(newCart)
+    // if (currentCart[product.id]) {
+    //   ++addedProduct.quantityInOrder
+    // } else {
+    //   addedProduct.quantityInOrder = 1
+    // }
+
+    dispatch(addProductToCart(newCart))
 
     if (!user.id) {
-      await axios.post(`/api/cart`, addedProduct)
+      await axios.post(`/api/cart`, newCart)
     }
 
     // if (user.id) {
@@ -71,7 +99,7 @@ export default function(state = [], action) {
     case GET_USER_CART:
       return action.cart
     case ADD_PRODUCT_TO_CART:
-      return {...state, [action.product.id]: action.product}
+      return action.newCart
     // case UPDATE_CART:
     //   return action.cart
     default:
