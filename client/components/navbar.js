@@ -11,6 +11,8 @@ class Navbar extends React.Component {
 
     if (this.props.user.id) {
       this.props.fetchCart(this.props.user.id)
+    } else {
+      this.props.fetchCart()
     }
   }
 
