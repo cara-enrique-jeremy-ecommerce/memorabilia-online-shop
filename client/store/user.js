@@ -25,8 +25,6 @@ const removeUser = () => ({type: REMOVE_USER})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    console.log('axios get /auth/me: ', res.data)
-    console.log('default user: ', defaultUser)
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
@@ -63,7 +61,7 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
