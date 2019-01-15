@@ -454,6 +454,36 @@ li:hover {
   text-decoration: underline;
 }
 
+/* POPUP WINDOW */
+
+.popup-window {
+  position: absolute;
+  position: fixed;
+  background-color: #fff;
+  height: 160px;
+  width: 500px;
+  top: 350px;
+  border: 1px solid red;
+  left: calc(50vw - 250px);
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 25px;
+}
+
+.popup-btn {
+  font-size: 1em;
+}
+
+.fa.fa-times {
+  cursor: pointer;
+  font-size: 1.5em;
+  transform: translateX(236px);
+}
+
 /******************************/
 /************* CART ***********/
 /******************************/
