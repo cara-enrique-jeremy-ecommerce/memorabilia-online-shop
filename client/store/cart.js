@@ -31,7 +31,6 @@ const gotUserCart = cart => {
 
 // thunk creators
 
-// NOT YET USED - CURRENTLY WORKING ON STORING AND RETRIEVING USER CARTS
 export const fetchCart = user => {
   return async dispatch => {
     const res = await axios.get(`/api/users/${user.id}/cart`)
