@@ -5,11 +5,31 @@ import {priceWithCommas} from './SingleProductSnapshot'
 import {Link} from 'react-router-dom'
 import {EditProductForm} from './'
 import {addToCart} from '../store/cart'
+import AddToCartPopup from './AddToCartPopup'
 
 class SingleProductDetail extends Component {
+  constructor() {
+    super()
+    this.state = {
+      popup: false
+    }
+    this.popupHandler = this.popupHandler.bind(this)
+  }
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.productId)
   }
+
+  popupHandler() {
+    this.setState({
+      popup: !this.state.popup
+    })
+  }
+
+  // popupRemove() {
+  //   this.setState({
+  //     popup: false
+  //   })
+  // }
 
   render() {
     const {product, user} = this.props
@@ -41,9 +61,10 @@ class SingleProductDetail extends Component {
                 {/* <Link to="/"> */}
                 <p
                   className="add-to-cart-btn"
-                  onClick={() =>
+                  onClick={() => {
                     this.props.addToCart(user, product, this.props.cart)
-                  }
+                    this.popupHandler()
+                  }}
                 >
                   Add to Cart!
                 </p>
@@ -57,6 +78,9 @@ class SingleProductDetail extends Component {
               <h3>Description</h3>
               <p>{description}</p>
             </div>
+            {this.state.popup && (
+              <AddToCartPopup name={name} popupHandler={this.popupHandler} />
+            )}
           </div>
         )}
         {product.id === Number(this.props.match.params.productId) &&

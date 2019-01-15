@@ -41,6 +41,56 @@ router.get('/:userId/cart', async (req, res, next) => {
   }
 })
 
+// POST /api/users/:userId/cart --> Add to authenticated user's cart
+router.post('/:userId/cart', async (req, res, next) => {
+  try {
+    const order = await Order.findOrCreate({
+      where: {
+        userId: req.params.userId,
+        status: 'open'
+      },
+      returning: true
+    })
+
+    const orderItem = await OrderItem.findOne({
+      where: {
+        orderId: order.id,
+        productId: req.body.id
+      }
+    })
+
+    if (!orderItem) {
+      await OrderItem.create(
+        {
+          quantity: req.body.quantityInOrder,
+          currentPrice: req.body.price,
+          orderId: order[0].id,
+          productId: req.body.id
+        },
+        {returning: true}
+      )
+    } else {
+      orderItem.update(
+        {
+          quantity: req.body.quantityInOrder,
+          currentPrice: req.body.price,
+          orderId: order[0].id,
+          productId: req.body.id
+        },
+        {returning: true}
+      )
+    }
+
+    // if (!orderItem) {
+    //   OrderItem.
+    // }
+
+    res.json(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
 // GET api/users/:userId/orders  --> History of completed orders
 router.get('/:userId/orders', async (req, res, next) => {
   try {
