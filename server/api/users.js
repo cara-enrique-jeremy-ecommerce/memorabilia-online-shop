@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, Address} = require('../db/models')
+const {User, Order, OrderItem, Address} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -41,20 +41,37 @@ router.get('/:userId/cart', async (req, res, next) => {
   }
 })
 
-// GET api/:userId/orders  --> History of past orders
+// GET api/users/:userId/orders  --> History of completed orders
 router.get('/:userId/orders', async (req, res, next) => {
   try {
-    const userId = req.params.userId
     const orders = await Order.findAll({
-      where: {userId},
-      include: [{all: true}]
+      where: {
+        userId: req.params.userId,
+        status: 'completed'
+      },
+      include: [{model: Address}]
     })
-    if (req.user(userId === req.user.id || req.user.adminPrivilege)) {
-      res.json(orders)
-    } else {
-      const err = new Error('Authorization error')
-      err.status = 401
-    }
+
+    res.json(orders)
+
+    // if (req.params.userId === req.user.id || req.user.adminPrivilege) {
+    //   res.json(orders)
+    // } else {
+    //   const err = new Error('Authorization error')
+    //   err.status = 401
+    // }
+  } catch (err) {
+    next(err)
+  }
+})
+
+// GET /users/:userId/orders/:orderId
+router.get('/:userId/orders/:orderId', async (req, res, next) => {
+  try {
+    const order = await Order.findById(req.params.orderId, {
+      where: {userId: req.params.userId}
+    })
+    res.json(order)
   } catch (err) {
     next(err)
   }
