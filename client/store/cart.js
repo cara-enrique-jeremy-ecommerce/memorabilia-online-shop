@@ -35,7 +35,7 @@ export const addToCart = (user, product, currentCart) => {
     copyCurrentCart.forEach(item => {
       if (item.id === product.id) {
         found = true
-        ++item.quantityInOrder
+        ++item.quantity
       }
     })
 

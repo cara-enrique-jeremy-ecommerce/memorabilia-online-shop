@@ -16,6 +16,7 @@ class Navbar extends React.Component {
 
   render() {
     const {handleClick, isLoggedIn, user, cart} = this.props
+    console.log('cart:  ', cart)
     return (
       <div className="navbar">
         <Link to="/">
@@ -35,7 +36,7 @@ class Navbar extends React.Component {
               </Link>
               <Link to="/cart">
                 <i className="fa fa-shopping-cart" />
-                {cart && <p>{cart.length}</p>}
+                {cart && <span>{cart.length}</span>}
               </Link>
             </div>
           ) : (
@@ -45,7 +46,7 @@ class Navbar extends React.Component {
               <Link to="/signup">Sign Up</Link>
               <Link to="/cart">
                 <i className="fa fa-shopping-cart" />
-                <p>0</p>
+                {cart && <span>{cart.length}</span>}
               </Link>
             </div>
           )}
