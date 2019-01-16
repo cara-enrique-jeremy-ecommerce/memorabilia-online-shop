@@ -1,9 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 const OrderItemSnapshot = props => {
   const {handleRemove, userId, quantity} = props
-  const {id, name, price, image, description} = props.orderItem
+  const {name, price, image, description} = props.orderItem
 
   return (
     <li>

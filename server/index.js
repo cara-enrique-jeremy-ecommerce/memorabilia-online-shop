@@ -63,17 +63,6 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // app.use((req, res, next) => {
-  //   console.log('Session id: ', req.session.id)
-  //   console.log('Session counter', req.session.counter)
-  //   if (req.session.counter) {
-  //     ++req.session.counter
-  //   } else {
-  //     req.session.counter = 1
-  //   }
-  //   next()
-  // })
-
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))

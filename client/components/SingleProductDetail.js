@@ -89,7 +89,6 @@ class SingleProductDetail extends Component {
                 >
                   Add to Cart!
                 </span>
-                {/* </Link> */}
               </div>
 
               <Link to="/" className="customer-reviews">
