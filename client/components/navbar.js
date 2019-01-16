@@ -38,7 +38,7 @@ class Navbar extends React.Component {
               </Link>
               <Link className="shopping-cart" to="/cart">
                 <i className="fa fa-shopping-cart" />
-                {this.props.cart && <span>{cartLength}</span>}
+                {this.props.cart && <span>{` ${cartLength}`}</span>}
               </Link>
             </div>
           ) : (

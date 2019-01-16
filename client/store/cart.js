@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {ProductList} from '../components'
 
 // ACTION TYPES
 
@@ -22,6 +21,7 @@ const addProductToCart = product => ({
 
 export const fetchCart = userId => {
   return async dispatch => {
+    console.log('fetchCart userId: ', userId)
     if (userId) {
       const res = await axios.get(`/api/users/${userId}/cart`)
       const {data: cart} = res
@@ -34,6 +34,7 @@ export const fetchCart = userId => {
     } else {
       const res = await axios.get('/api/cart')
       const {data: cart} = res
+      console.log('guest cart from server: ', cart)
       dispatch(gotUserCart(cart))
     }
   }
@@ -56,52 +57,6 @@ export const addToCart = (user, product, currentCart) => {
     }
   }
 }
-
-// export const addToCart = (user, product, currentCart) => {
-//   return async dispatch => {
-//     let found = false
-//     let copyCurrentCart = currentCart.slice()
-
-//     copyCurrentCart.forEach(item => {
-//       if (item.id === product.id) {
-//         found = true
-//         ++item.quantity
-//       }
-//     })
-
-//     if (!found) {
-//       product.quantityInOrder = 1
-//       copyCurrentCart.push(product)
-//     }
-
-//     const newCart = copyCurrentCart.map(item => {
-//       const newItem = {}
-
-//       newItem.id = item.id
-//       if (item.product) {
-//         newItem.product = item.product
-//         newItem.quantity = item.quantity
-//       } else {
-//         newItem.product = item
-//         newItem.quantity = item.quantityInOrder
-//       }
-//       return newItem
-//     })
-
-//     console.log('new cart for req.session: ', newCart)
-
-//     dispatch(addProductToCart(newCart))
-
-//     if (!user.id) {
-//       await axios.post(`/api/cart`, newCart)
-//     }
-
-//     // if (user.id) {
-//     //   const res = await axios.post(`/api/cart/${user.id}`, product)
-//     //   addedProduct = res.data
-//     // }
-//   }
-// }
 
 // reducer
 
