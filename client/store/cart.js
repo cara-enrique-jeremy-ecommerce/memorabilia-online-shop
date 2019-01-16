@@ -46,9 +46,11 @@ export const fetchCart = userId => {
   }
 }
 
-export const addToCart = (user, product, currentCart) => {
+export function addToCart(user, product, currentCart, quantityToAdd) {
   return async dispatch => {
     const addedProduct = Object.assign({}, product)
+    console.log('args: ', user, product, currentCart, quantityToAdd)
+    console.log('quantity to add: ', quantityToAdd)
     if (currentCart[product.id]) {
       addedProduct.quantityInOrder = currentCart[product.id].quantityInOrder + 1
     } else {

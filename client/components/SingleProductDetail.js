@@ -11,9 +11,11 @@ class SingleProductDetail extends Component {
   constructor() {
     super()
     this.state = {
-      popup: false
+      popup: false,
+      quantityToAdd: 1
     }
     this.popupHandler = this.popupHandler.bind(this)
+    this.changeSelected = this.changeSelected.bind(this)
   }
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.productId)
@@ -25,6 +27,10 @@ class SingleProductDetail extends Component {
     })
   }
 
+  changeSelected(event) {
+    this.setState({quantityToAdd: event.target.value})
+  }
+
   // popupRemove() {
   //   this.setState({
   //     popup: false
@@ -34,6 +40,8 @@ class SingleProductDetail extends Component {
   render() {
     const {product, user} = this.props
     const {image, name, price, description, quantity} = product
+    console.log('quantity to add on state: ', this.state.quantityToAdd)
+    const quantityToAdd = this.state.quantityToAdd
 
     return (
       <div className="container">
@@ -58,16 +66,35 @@ class SingleProductDetail extends Component {
                     Price: <span>${priceWithCommas(price)}</span>
                   </p>
                 )}
+                <p>
+                  <select name="quantityToAdd" onChange={this.changeSelected}>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                    <option value={6}>6</option>
+                    <option value={7}>7</option>
+                    <option value={8}>8</option>
+                    <option value={9}>9</option>
+                    <option value={10}>10</option>
+                  </select>
+                </p>
                 {/* <Link to="/"> */}
-                <p
+                <span
                   className="add-to-cart-btn"
                   onClick={() => {
-                    this.props.addToCart(user, product, this.props.cart)
+                    this.props.addToCart(
+                      user,
+                      product,
+                      this.props.cart,
+                      quantityToAdd
+                    )
                     this.popupHandler()
                   }}
                 >
                   Add to Cart!
-                </p>
+                </span>
                 {/* </Link> */}
               </div>
 
