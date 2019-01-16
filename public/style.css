@@ -116,7 +116,7 @@ button {
 
 .container {
   width: 90%;
-  margin: 40px auto 60px;
+  margin: 60px auto 120px;
   text-align: center;
 }
 
@@ -306,7 +306,20 @@ li:hover {
 }
 
 .category-item {
-  margin-bottom: 60px;
+  background-color: #eaeded;
+  margin: 40px 60px;
+  padding: 30px 30px 20px;
+  transition: all 0.3s ease;
+}
+
+.category-item:hover {
+  transform: translateY(-3px);
+}
+
+.category-item p {
+  color: #222;
+  margin: 10px auto 0;
+  letter-spacing: 0.05em;
 }
 
 .category-snapshot {
@@ -344,9 +357,7 @@ li:hover {
 
 .product-snapshot img {
   padding: 30px 0;
-  /* border: 1px solid green; */
   height: 200px;
-  /* max-height: 200px; */
   width: auto;
   max-width: 225px;
 }
