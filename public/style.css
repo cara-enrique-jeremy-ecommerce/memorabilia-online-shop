@@ -116,7 +116,7 @@ button {
 
 .container {
   width: 90%;
-  margin: 40px auto 60px;
+  margin: 60px auto 120px;
   text-align: center;
 }
 
@@ -185,16 +185,15 @@ a.shopping-cart span {
 /******************************/
 
 .productsnav {
+  align-items: center;
+  background-color: #e13b3a;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  justify-content: space-between;
   padding-left: 60px;
   padding-right: 60px;
-  background-color: #fff;
-  background-color: #e13b3a;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  color: #fff;
-  height: 50px;
 }
 
 .productsnav select {
@@ -383,7 +382,7 @@ li:hover {
 }
 
 .single-product-image {
-  height: 500px;
+  height: 400px;
   width: 40%;
   display: flex;
   align-items: center;
@@ -456,15 +455,29 @@ li:hover {
 
 /* POPUP WINDOW */
 
+.popup-wrapperbg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.6;
+}
+
 .popup-window {
   position: absolute;
   position: fixed;
   background-color: #fff;
   height: 160px;
   width: 500px;
-  top: 350px;
+  top: 300px;
   border: 1px solid red;
   left: calc(50vw - 250px);
+}
+
+.popup-window > p {
+  margin: 10px;
 }
 
 .popup-buttons {
@@ -478,10 +491,17 @@ li:hover {
   font-size: 1em;
 }
 
+.fa.fa-check-circle-o {
+  color: green;
+  font-size: 1.5em;
+  margin-right: 5px;
+  transform: translateY(3px);
+}
+
 .fa.fa-times {
   cursor: pointer;
-  font-size: 1.5em;
-  transform: translateX(236px);
+  font-size: 2em;
+  transform: translateX(220px) translateY(12px);
 }
 
 /******************************/
@@ -508,16 +528,18 @@ li:hover {
   position: relative;
   box-shadow: none;
   font-weight: 400;
+  border-bottom: 2px solid #ccc;
 }
 
 .orderitems ul li {
   background-color: #fff;
-  box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 0;
+  border-top: 2px solid #ccc;
+  border-bottom: none;
 }
 
 .orderitems ul li:hover {
@@ -554,6 +576,18 @@ li:hover {
   justify-content: space-between;
 }
 
+.orderdetails-right .right-down p span {
+  color: #b12704;
+}
+
+.right-down p span {
+  margin-left: 50px;
+}
+
+span.quantity-in-cart {
+  margin-left: 97px !important;
+}
+
 .remove-btn {
   border: none;
   color: #e13b3a;
@@ -561,4 +595,11 @@ li:hover {
 
 .cart .add-to-cart-btn {
   margin: 0 auto;
+}
+
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-size: 2em;
 }

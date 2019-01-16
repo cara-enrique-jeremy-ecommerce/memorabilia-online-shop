@@ -25,12 +25,6 @@ class SingleProductDetail extends Component {
     })
   }
 
-  // popupRemove() {
-  //   this.setState({
-  //     popup: false
-  //   })
-  // }
-
   render() {
     const {product, user} = this.props
     const {image, name, price, description, quantity} = product
@@ -58,7 +52,6 @@ class SingleProductDetail extends Component {
                     Price: <span>${priceWithCommas(price)}</span>
                   </p>
                 )}
-                {/* <Link to="/"> */}
                 <p
                   className="add-to-cart-btn"
                   onClick={() => {
@@ -68,7 +61,6 @@ class SingleProductDetail extends Component {
                 >
                   Add to Cart!
                 </p>
-                {/* </Link> */}
               </div>
 
               <Link to="/" className="customer-reviews">
