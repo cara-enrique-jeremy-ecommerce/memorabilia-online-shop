@@ -19,10 +19,6 @@ import Profile from './components/Profile'
  * COMPONENT
  */
 class Routes extends Component {
-  // componentDidMount() {
-  //   this.props.loadInitialData()
-  // }
-
   render() {
     const {isLoggedIn} = this.props
 
@@ -60,14 +56,6 @@ const mapState = state => {
   }
 }
 
-// const mapDispatch = dispatch => {
-//   return {
-//     loadInitialData() {
-//       dispatch(me())
-//     }
-//   }
-// }
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default withRouter(connect(mapState)(Routes))
@@ -76,6 +64,5 @@ export default withRouter(connect(mapState)(Routes))
  * PROP TYPES
  */
 Routes.propTypes = {
-  // loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
