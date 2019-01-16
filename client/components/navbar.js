@@ -22,7 +22,9 @@ class Navbar extends React.Component {
     return (
       <div className="navbar">
         <Link to="/">
-          <h1 className="logo animated">MOVIE'S Non-Props</h1>
+          <h1 className="logo animated">
+            <i className="fa fa-film" /> Memorabilia
+          </h1>
         </Link>
 
         <nav>

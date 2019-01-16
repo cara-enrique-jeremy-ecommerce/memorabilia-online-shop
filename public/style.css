@@ -149,6 +149,13 @@ button {
 
 .logo {
   color: #fff;
+  font-family: 'Pacifico';
+  font-size: 2.5em;
+  margin: 10px;
+}
+
+.logo i {
+  font-size: 1.3em;
 }
 
 .navbar nav {
