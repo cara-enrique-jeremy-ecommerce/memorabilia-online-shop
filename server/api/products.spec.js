@@ -24,4 +24,35 @@ describe('Products Route:', () => {
       expect(res.body).to.be.an.instanceOf(Array)
     })
   })
+
+  describe('POST /api/products', () => {
+    it('creates a product in the DB and returns it', async () => {
+      const res = await request(app)
+        .post('/api/products')
+        .send({name: 'test', description: 'This is a test.', price: 19.99})
+        .expect(200)
+
+      expect(res.body.name).to.equal('test')
+    })
+  })
+
+  describe('PUT /api/products', () => {
+    let productToUpdate
+
+    beforeEach(async () => {
+      productToUpdate = await Product.create({
+        name: 'test',
+        price: 20.0
+      })
+    })
+
+    it('updates a product in the DB and returns it', async () => {
+      const res = await request(app)
+        .put(`/api/products/${productToUpdate.id}`)
+        .send({name: 'test put'})
+        .expect(200)
+
+      expect(res.body.name).to.equal('test put')
+    })
+  })
 })

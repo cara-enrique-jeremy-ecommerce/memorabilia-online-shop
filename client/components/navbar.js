@@ -68,7 +68,10 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
-  handleClick: () => dispatch(logout()),
+  handleClick: async () => {
+    await dispatch(logout())
+    dispatch(fetchCart())
+  },
   fetchCart: userId => dispatch(fetchCart(userId))
 })
 
