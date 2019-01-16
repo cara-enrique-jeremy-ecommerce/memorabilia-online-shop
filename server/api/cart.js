@@ -30,7 +30,6 @@ router.post('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
   try {
-    console.log('req.body: ', req.body.productId)
     delete req.session.cart[req.body.productId]
     res.json(req.session.cart)
   } catch (error) {
