@@ -23,7 +23,7 @@ class Profile extends React.Component {
                 <i className="fa fa-archive" aria-hidden="true" />
               </div>
             </Link>
-            <Link to="/profile/addresses">
+            <Link to="/profile">
               <div className="addresses animated">
                 <h2>Your Addresses</h2>
                 <i className="fa fa-map-marker" aria-hidden="true" />
