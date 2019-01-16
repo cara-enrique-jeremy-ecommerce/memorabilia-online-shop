@@ -129,8 +129,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-  addToCart: (user, product, currentCart) =>
-    dispatch(addToCart(user, product, currentCart))
+  addToCart: (user, product, currentCart, quantityToAdd) =>
+    dispatch(addToCart(user, product, currentCart, quantityToAdd))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProductDetail)
