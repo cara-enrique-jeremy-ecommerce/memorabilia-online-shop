@@ -51,7 +51,7 @@ export function addToCart(user, product, currentCart, quantityToAdd) {
     const addedProduct = Object.assign({}, product)
     if (currentCart[product.id]) {
       addedProduct.quantityInOrder =
-        currentCart[product.id].quantityInOrder + quantityToAdd
+        Number(currentCart[product.id].quantityInOrder) + Number(quantityToAdd)
     } else {
       addedProduct.quantityInOrder = quantityToAdd
     }
