@@ -13,16 +13,12 @@ import {
 } from './components'
 import CategoryList from './components/CategoryList'
 import Profile from './components/Profile'
-// import {me} from './store'
+import OrderHistory from './components/OrderHistory'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  // componentDidMount() {
-  //   this.props.loadInitialData()
-  // }
-
   render() {
     const {isLoggedIn} = this.props
 
@@ -41,7 +37,8 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/profile" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/profile/orders" component={OrderHistory} />
           </Switch>
         )}
       </Switch>
@@ -60,14 +57,6 @@ const mapState = state => {
   }
 }
 
-// const mapDispatch = dispatch => {
-//   return {
-//     loadInitialData() {
-//       dispatch(me())
-//     }
-//   }
-// }
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default withRouter(connect(mapState)(Routes))
@@ -76,6 +65,5 @@ export default withRouter(connect(mapState)(Routes))
  * PROP TYPES
  */
 Routes.propTypes = {
-  // loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
