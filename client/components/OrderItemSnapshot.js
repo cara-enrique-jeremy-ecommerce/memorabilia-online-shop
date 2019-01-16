@@ -5,11 +5,8 @@ const OrderItemSnapshot = props => {
   const {handleRemove, userId, quantity} = props
   const {id, name, price, image, description} = props.orderItem
 
-  // <Link to={`products/${id}`}></Link>
-  // {/* <h2>{product.orderItem.quantity}</h2> */}
-
   return (
-    <li key={id}>
+    <li>
       <div className="orderdetails-left">
         <img className="order-item-img" src={image} />
       </div>
@@ -18,8 +15,12 @@ const OrderItemSnapshot = props => {
         <p>{description}</p>
         <div className="right-down">
           <div className="right-down-left">
-            <p>Price: {price}</p>
-            <p>Quantity: {quantity}</p>
+            <p>
+              Price: <span>{price}</span>
+            </p>
+            <p>
+              Qty: <span className="quantity-in-cart">{quantity}</span>
+            </p>
           </div>
           <button
             className="remove-btn"

@@ -109,56 +109,6 @@ async function seed() {
     imageURL: '/img/back-to-the-future.png'
   })
 
-  // const categories = await Promise.all([
-  //   Category.create({
-  //     name: 'batman',
-  //     title: 'Batman',
-  //     imageURL: '/img/batman.jpg'
-  //   }),
-  //   Category.create({
-  //     name: 'harry-potter',
-  //     title: 'Harry Potter',
-  //     imageURL: '/img/harry-potter.png'
-  //   }),
-  //   Category.create({
-  //     name: 'star-wars',
-  //     title: 'Star Wars',
-  //     imageURL: '/img/star-wars.png'
-  //   }),
-  //   Category.create({
-  //     name: 'superman',
-  //     title: 'Superman',
-  //     imageURL: '/img/superman.jpg'
-  //   }),
-  //   Category.create({
-  //     name: 'the-lord-of-the-rings',
-  //     title: 'The Lord of the Rings',
-  //     imageURL: '/img/the-lord-of-the-rings.png'
-  //   }),
-  //   Category.create({
-  //     name: 'transformers',
-  //     title: 'Transformers',
-  //     imageURL: '/img/transformers.png'
-  //   }),
-  //   Category.create({
-  //     name: 'tron',
-  //     title: 'Tron: Legacy',
-  //     imageURL: '/img/tron.jpeg'
-  //   }),
-  //   Category.create({
-  //     name: 'x-men',
-  //     title: 'X-MEN',
-  //     imageURL: '/img/x-men.png'
-  //   }),
-  //   Category.create({
-  //     name: 'back-to-the-future',
-  //     title: 'Back to the Future',
-  //     imageURL: '/img/back-to-the-future.png'
-  //   })
-  // ])
-
-  // console.log(`seeded ${categories.length} categories`)
-
   const products = [
     {
       name: 'Kryptonite',

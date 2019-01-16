@@ -41,16 +41,19 @@ class Cart extends Component {
                   )
                 })}
               </ul>
-              <p>
-                Total price:{' $'}
-                {cart
-                  .reduce((total, orderItem) => {
-                    const totalItem =
-                      Number(orderItem.price) * orderItem.quantityInOrder
-                    return total + totalItem
-                  }, 0)
-                  .toFixed(2)}
-              </p>
+              <div className="total-price">
+                <p>Total:</p>
+                <p>
+                  {' $'}
+                  {cart
+                    .reduce((total, orderItem) => {
+                      const totalItem =
+                        Number(orderItem.price) * orderItem.quantityInOrder
+                      return total + totalItem
+                    }, 0)
+                    .toFixed(2)}
+                </p>
+              </div>
               <Link to="/checkout">
                 <p className="add-to-cart-btn">Checkout!</p>
               </Link>
