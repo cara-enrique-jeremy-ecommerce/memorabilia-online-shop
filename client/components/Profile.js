@@ -1,47 +1,43 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import CompletedOrders from './CompletedOrders'
-import {fetchCompletedOrders} from '../store/orders'
+import {Link} from 'react-router-dom'
 
 class Profile extends React.Component {
-  componentDidMount() {
-    this.props.fetchCompletedOrders(this.props.user.id)
-  }
-
   render() {
     const {firstName, lastName, email} = this.props.user
-    console.log(this.props)
 
     return (
       <div className="container">
-        <h3>
-          <strong>Welcome, {firstName}!</strong>
-        </h3>
-        <hr />
-        <h1>Account Details</h1>
-        <p>Full Name: {`${firstName} ${lastName}`}</p>
-        <p>Email: {email}</p>
-        <h2>Your Addresses</h2>
-        <p>Fetch addresses here...</p>
-        <h2>Order History</h2>
-        <CompletedOrders orders={this.props.orders} />
+        <div className="profile">
+          <div className="account-details">
+            <h1>Account Details</h1>
+            <p className="account-label">Name</p>
+            <p>{`${firstName} ${lastName}`}</p>
+            <p className="account-label">Email</p>
+            <p>{email}</p>
+          </div>
+          <div className="orders-addresses">
+            <Link to="/profile/orders">
+              <div className="orders animated">
+                <h2>Your Orders</h2>
+                <i className="fa fa-archive" aria-hidden="true" />
+              </div>
+            </Link>
+            <Link to="/profile">
+              <div className="addresses animated">
+                <h2>Your Addresses</h2>
+                <i className="fa fa-map-marker" aria-hidden="true" />
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  orders: state.orders
+  user: state.user
 })
 
-const mapDispatchToProps = dispatch => ({
-  fetchCompletedOrders: id => dispatch(fetchCompletedOrders(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
-
-Profile.propTypes = {
-  fetchCompletedOrders: PropTypes.func.isRequired
-}
+export default connect(mapStateToProps)(Profile)

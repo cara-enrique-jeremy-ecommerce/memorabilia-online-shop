@@ -13,7 +13,7 @@ import {
 } from './components'
 import CategoryList from './components/CategoryList'
 import Profile from './components/Profile'
-// import {me} from './store'
+import OrderHistory from './components/OrderHistory'
 
 /**
  * COMPONENT
@@ -37,7 +37,8 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/profile" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/profile/orders" component={OrderHistory} />
           </Switch>
         )}
       </Switch>
