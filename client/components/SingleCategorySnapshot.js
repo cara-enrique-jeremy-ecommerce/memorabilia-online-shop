@@ -9,9 +9,6 @@ class SingleCategorySnapshot extends React.Component {
     super(props)
     this.handleChange = this.handleChange.bind(this)
   }
-  // componentDidMount() {
-  //   this.props.getCurrentCategory(this.props.category.id)
-  // }
 
   handleChange() {
     this.props.getCurrentCategory(this.props.category.id)
@@ -21,12 +18,12 @@ class SingleCategorySnapshot extends React.Component {
     const {id, title, imageURL} = this.props.category
 
     return (
-      <div className="category-item">
-        <p>{title}</p>
-        <Link to={`/categories/${id}`} onClick={() => this.handleChange()}>
+      <Link to={`/categories/${id}`} onClick={() => this.handleChange()}>
+        <div className="category-item">
           <img className="category-snapshot" src={imageURL} />
-        </Link>
-      </div>
+          <p>{title}</p>
+        </div>
+      </Link>
     )
   }
 }

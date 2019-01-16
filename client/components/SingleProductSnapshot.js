@@ -17,7 +17,9 @@ const SingleProductSnapshot = props => {
   return (
     <div className="product-item">
       <Link to={`/products/${id}`}>
-        <img className="product-snapshot" src={image} />
+        <div className="product-snapshot">
+          <img src={image} />
+        </div>
       </Link>
       <div className="product-info">
         <Link to={`/products/${id}`}>
