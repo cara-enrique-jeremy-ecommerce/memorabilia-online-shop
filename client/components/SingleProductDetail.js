@@ -60,6 +60,7 @@ class SingleProductDetail extends Component {
                     Price: <span>${priceWithCommas(price)}</span>
                   </p>
                 )}
+                <p />
                 <p>
                   <select name="quantityToAdd" onChange={this.changeSelected}>
                     <option value={1}>1</option>
@@ -74,7 +75,6 @@ class SingleProductDetail extends Component {
                     <option value={10}>10</option>
                   </select>
                 </p>
-                {/* <Link to="/"> */}
                 <span
                   className="add-to-cart-btn"
                   onClick={() => {
