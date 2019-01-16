@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
 import CompletedOrders from './CompletedOrders'
 import {fetchCompletedOrders} from '../store/orders'
 
@@ -11,7 +10,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const {firstName, lastName, email, id} = this.props.user
+    const {firstName, lastName, email} = this.props.user
     console.log(this.props)
 
     return (
