@@ -69,6 +69,8 @@ export const removeFromCart = (userId, productId) => {
     dispatch(removeProductFromCart(productId))
     if (!userId) {
       await axios.delete('/api/cart', {data: {productId}})
+    } else {
+      await axios.delete(`/api/users/${userId}/cart`, {data: {productId}})
     }
   }
 }
