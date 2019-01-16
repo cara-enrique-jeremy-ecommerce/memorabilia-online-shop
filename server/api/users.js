@@ -81,11 +81,29 @@ router.post('/:userId/cart', async (req, res, next) => {
       )
     }
 
-    // if (!orderItem) {
-    //   OrderItem.
-    // }
-
     res.json(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:userId/cart', async (req, res, next) => {
+  try {
+    const cartOrder = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        status: 'open'
+      }
+    })
+    console.log('cart order: ', cartOrder.id)
+    await OrderItem.destroy({
+      where: {
+        orderId: cartOrder.id,
+        productId: req.body.productId
+      }
+    })
+
+    res.sendStatus(201)
   } catch (error) {
     next(error)
   }

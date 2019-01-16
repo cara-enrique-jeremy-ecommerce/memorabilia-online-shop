@@ -46,13 +46,14 @@ export const fetchCart = userId => {
   }
 }
 
-export const addToCart = (user, product, currentCart) => {
+export function addToCart(user, product, currentCart, quantityToAdd) {
   return async dispatch => {
     const addedProduct = Object.assign({}, product)
     if (currentCart[product.id]) {
-      addedProduct.quantityInOrder = currentCart[product.id].quantityInOrder + 1
+      addedProduct.quantityInOrder =
+        currentCart[product.id].quantityInOrder + quantityToAdd
     } else {
-      addedProduct.quantityInOrder = 1
+      addedProduct.quantityInOrder = quantityToAdd
     }
     dispatch(addProductToCart(addedProduct))
 
@@ -69,6 +70,8 @@ export const removeFromCart = (userId, productId) => {
     dispatch(removeProductFromCart(productId))
     if (!userId) {
       await axios.delete('/api/cart', {data: {productId}})
+    } else {
+      await axios.delete(`/api/users/${userId}/cart`, {data: {productId}})
     }
   }
 }

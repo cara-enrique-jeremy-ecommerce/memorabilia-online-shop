@@ -424,6 +424,10 @@ li:hover {
   align-items: center;
 }
 
+.single-product-info .main-info select {
+  font-size: 1em;
+}
+
 .add-to-cart-btn {
   align-items: center;
   background-color: #f50;
