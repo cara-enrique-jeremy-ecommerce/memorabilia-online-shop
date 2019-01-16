@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const GET_USER_CART = 'GET_USER_CART'
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
+const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART'
 
 // ACTION CREATORS
 
@@ -15,6 +16,11 @@ const gotUserCart = cart => ({
 const addProductToCart = product => ({
   type: ADD_PRODUCT_TO_CART,
   product
+})
+
+const removeProductFromCart = productId => ({
+  type: REMOVE_PRODUCT_FROM_CART,
+  productId
 })
 
 // THUNK CREATORS
@@ -58,14 +64,27 @@ export const addToCart = (user, product, currentCart) => {
   }
 }
 
+export const removeFromCart = (userId, productId) => {
+  return async dispatch => {
+    dispatch(removeProductFromCart(productId))
+    if (!userId) {
+      await axios.delete('/api/cart', {data: {productId}})
+    }
+  }
+}
+
 // reducer
 
 export default function(state = {}, action) {
+  const newState = {...state}
   switch (action.type) {
     case GET_USER_CART:
       return action.cart
     case ADD_PRODUCT_TO_CART:
       return {...state, [action.product.id]: action.product}
+    case REMOVE_PRODUCT_FROM_CART:
+      delete newState[action.productId]
+      return newState
     default:
       return state
   }

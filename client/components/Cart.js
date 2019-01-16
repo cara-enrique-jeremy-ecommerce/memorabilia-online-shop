@@ -2,8 +2,18 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import OrderItemSnapshot from './OrderItemSnapshot'
 import {Link} from 'react-router-dom'
+import {removeFromCart} from '../store/cart'
 
 class Cart extends Component {
+  constructor() {
+    super()
+    this.handleRemove = this.handleRemove.bind(this)
+  }
+
+  handleRemove(userId, productId) {
+    this.props.removeFromCart(userId, productId)
+  }
+
   render() {
     const cart = []
     for (let key in this.props.cart) {
@@ -33,11 +43,13 @@ class Cart extends Component {
               </ul>
               <p>
                 Total price:{' $'}
-                {cart.reduce((total, orderItem) => {
-                  const totalItem =
-                    Number(orderItem.price) * orderItem.quantityInOrder
-                  return total + totalItem
-                }, 0)}
+                {cart
+                  .reduce((total, orderItem) => {
+                    const totalItem =
+                      Number(orderItem.price) * orderItem.quantityInOrder
+                    return total + totalItem
+                  }, 0)
+                  .toFixed(2)}
               </p>
               <Link to="/checkout">
                 <p className="add-to-cart-btn">Checkout!</p>
@@ -62,4 +74,11 @@ const mapStateToProps = state => ({
   cart: state.cart
 })
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = dispatch => {
+  return {
+    removeFromCart: (userId, productId) =>
+      dispatch(removeFromCart(userId, productId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
