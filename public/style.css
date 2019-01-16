@@ -219,6 +219,14 @@ a.shopping-cart span {
   border-right: 2px solid #222;
 }
 
+@media only screen and (max-width: 1440px) {
+  .popular {
+    width: 800px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
 .popular a {
   color: #fff;
   color: #f4cf7d;
