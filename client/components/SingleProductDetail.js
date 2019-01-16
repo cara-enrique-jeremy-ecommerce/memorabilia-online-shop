@@ -31,12 +31,6 @@ class SingleProductDetail extends Component {
     this.setState({quantityToAdd: event.target.value})
   }
 
-  // popupRemove() {
-  //   this.setState({
-  //     popup: false
-  //   })
-  // }
-
   render() {
     const {product, user} = this.props
     const {image, name, price, description, quantity} = product

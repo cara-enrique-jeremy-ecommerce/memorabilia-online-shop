@@ -325,17 +325,30 @@ li:hover {
 }
 
 .product-item {
-  width: 260px;
-  margin: 50px 30px 10px;
   border: 1px solid #eee;
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.45);
+  margin: 50px 30px 10px;
+  width: 260px;
+  transition: all 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 1px 9px 20px rgba(0, 0, 0, 0.45);
 }
 
 .product-snapshot {
+  width: 100%;
+  height: 100%;
+}
+
+.product-snapshot img {
   padding: 30px 0;
   /* border: 1px solid green; */
   height: 200px;
+  /* max-height: 200px; */
   width: auto;
-  max-width: 250px;
+  max-width: 225px;
 }
 
 .product-info {
