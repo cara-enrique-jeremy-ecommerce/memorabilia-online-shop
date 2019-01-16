@@ -1,10 +1,10 @@
 import axios from 'axios'
-import {ProductList} from '../components'
 
 // ACTION TYPES
 
 const GET_USER_CART = 'GET_USER_CART'
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
+const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART'
 
 // ACTION CREATORS
 
@@ -18,10 +18,16 @@ const addProductToCart = product => ({
   product
 })
 
+const removeProductFromCart = productId => ({
+  type: REMOVE_PRODUCT_FROM_CART,
+  productId
+})
+
 // THUNK CREATORS
 
 export const fetchCart = userId => {
   return async dispatch => {
+    console.log('fetchCart userId: ', userId)
     if (userId) {
       const res = await axios.get(`/api/users/${userId}/cart`)
       const {data: cart} = res
@@ -34,6 +40,7 @@ export const fetchCart = userId => {
     } else {
       const res = await axios.get('/api/cart')
       const {data: cart} = res
+      console.log('guest cart from server: ', cart)
       dispatch(gotUserCart(cart))
     }
   }
@@ -57,60 +64,27 @@ export const addToCart = (user, product, currentCart) => {
   }
 }
 
-// export const addToCart = (user, product, currentCart) => {
-//   return async dispatch => {
-//     let found = false
-//     let copyCurrentCart = currentCart.slice()
-
-//     copyCurrentCart.forEach(item => {
-//       if (item.id === product.id) {
-//         found = true
-//         ++item.quantity
-//       }
-//     })
-
-//     if (!found) {
-//       product.quantityInOrder = 1
-//       copyCurrentCart.push(product)
-//     }
-
-//     const newCart = copyCurrentCart.map(item => {
-//       const newItem = {}
-
-//       newItem.id = item.id
-//       if (item.product) {
-//         newItem.product = item.product
-//         newItem.quantity = item.quantity
-//       } else {
-//         newItem.product = item
-//         newItem.quantity = item.quantityInOrder
-//       }
-//       return newItem
-//     })
-
-//     console.log('new cart for req.session: ', newCart)
-
-//     dispatch(addProductToCart(newCart))
-
-//     if (!user.id) {
-//       await axios.post(`/api/cart`, newCart)
-//     }
-
-//     // if (user.id) {
-//     //   const res = await axios.post(`/api/cart/${user.id}`, product)
-//     //   addedProduct = res.data
-//     // }
-//   }
-// }
+export const removeFromCart = (userId, productId) => {
+  return async dispatch => {
+    dispatch(removeProductFromCart(productId))
+    if (!userId) {
+      await axios.delete('/api/cart', {data: {productId}})
+    }
+  }
+}
 
 // reducer
 
 export default function(state = {}, action) {
+  const newState = {...state}
   switch (action.type) {
     case GET_USER_CART:
       return action.cart
     case ADD_PRODUCT_TO_CART:
       return {...state, [action.product.id]: action.product}
+    case REMOVE_PRODUCT_FROM_CART:
+      delete newState[action.productId]
+      return newState
     default:
       return state
   }

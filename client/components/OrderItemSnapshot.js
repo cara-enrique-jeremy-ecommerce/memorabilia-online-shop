@@ -24,7 +24,7 @@ const OrderItemSnapshot = props => {
           <button
             className="remove-btn"
             type="button"
-            onClick={() => handleRemove(id, userId)}
+            onClick={() => handleRemove(userId, props.orderItem.id)}
           >
             <i className="fa fa-trash-o" aria-hidden="true" />
           </button>

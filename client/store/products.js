@@ -44,27 +44,6 @@ export const postProduct = newProduct => {
   }
 }
 
-export const fetchProductsInCart = userId => async dispatch => {
-  try {
-    const currentCart = await axios.get(`/api/orders/${userId}/cart`)
-    const {data} = await axios.get(
-      `/api/orders/inCart/${currentCart.data[0].id}`
-    )
-    dispatch(gotProducts(data))
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-export const deleteProductInCart = (productId, userId) => async dispatch => {
-  try {
-    await axios.delete(`/api/orders/removeFromCart?productId=${productId}`)
-    dispatch(fetchProductsInCart(userId))
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 // reducer
 
 export default function(state = initialState, action) {

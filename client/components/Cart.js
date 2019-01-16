@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {me} from '../store/user'
-// import {fetchProductsInCart, deleteProductInCart} from '../store/products'
-import {priceWithCommas} from './SingleProductSnapshot'
 import OrderItemSnapshot from './OrderItemSnapshot'
 import {Link} from 'react-router-dom'
+import {removeFromCart} from '../store/cart'
 
 class Cart extends Component {
-  async handleRemove(productId, userId) {
-    await this.props.deleteProductThunk(productId, userId)
+  constructor() {
+    super()
+    this.handleRemove = this.handleRemove.bind(this)
+  }
+
+  handleRemove(userId, productId) {
+    this.props.removeFromCart(userId, productId)
   }
 
   render() {
@@ -18,8 +21,6 @@ class Cart extends Component {
         cart.push(this.props.cart[key])
       }
     }
-    console.log('cart: ', cart)
-    let total = 0
 
     return (
       <div className="container">
@@ -41,11 +42,14 @@ class Cart extends Component {
                 })}
               </ul>
               <p>
-                Total price:{' '}
-                {cart.map(orderItem => {
-                  total += Number(orderItem.price)
-                  return total
-                })}
+                Total price:{' $'}
+                {cart
+                  .reduce((total, orderItem) => {
+                    const totalItem =
+                      Number(orderItem.price) * orderItem.quantityInOrder
+                    return total + totalItem
+                  }, 0)
+                  .toFixed(2)}
               </p>
               <Link to="/checkout">
                 <p className="add-to-cart-btn">Checkout!</p>
@@ -70,4 +74,11 @@ const mapStateToProps = state => ({
   cart: state.cart
 })
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = dispatch => {
+  return {
+    removeFromCart: (userId, productId) =>
+      dispatch(removeFromCart(userId, productId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
